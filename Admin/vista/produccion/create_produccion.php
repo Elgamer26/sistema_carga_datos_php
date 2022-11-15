@@ -90,6 +90,7 @@
                         </div>
 
                         <div class="ibox-body">
+                            
                             <ul class="nav nav-pills">
                                 <li class="nav-item">
                                     <a class="nav-link active" href="#pill-1-4" data-toggle="tab">Hectareas</a>
@@ -103,7 +104,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#pill-1-3" data-toggle="tab">Insumos</a>
                                 </li>
-
                             </ul>
 
                             <div class="tab-content">

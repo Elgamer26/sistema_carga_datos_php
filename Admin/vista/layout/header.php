@@ -6,23 +6,23 @@ if (!isset($_SESSION["id_usu"])) {
 }
 require "../../modelo/conect/conect.php";
 $user = 'SELECT
-    usuario.usuario_id, 
-    usuario.nombres, 
-    usuario.apellidos, 
-    usuario.correo, 
-    usuario.cedula, 
-    usuario.usuario, 
-    usuario.`contraseña`, 
-    usuario.foto, 
-    usuario.rol_id, 
-    rol.rol, 
-    usuario.estado
-    FROM
-    usuario
-    INNER JOIN
-    rol
-    ON 
-    usuario.rol_id = rol.rol_id WHERE usuario.usuario_id = ' . $_SESSION["id_usu"] . '';
+        usuario.usuario_id, 
+        usuario.nombres, 
+        usuario.apellidos, 
+        usuario.correo, 
+        usuario.cedula, 
+        usuario.usuario, 
+        usuario.`contraseña`, 
+        usuario.foto, 
+        usuario.rol_id, 
+        rol.rol, 
+        usuario.estado
+        FROM
+        usuario
+        INNER JOIN
+        rol
+        ON 
+        usuario.rol_id = rol.rol_id WHERE usuario.usuario_id = ' . $_SESSION["id_usu"] . '';
 $resulta_user = $mysqli->query($user);
 $data_web = mysqli_fetch_assoc($resulta_user);
 ?>
@@ -430,33 +430,39 @@ $data_web = mysqli_fetch_assoc($resulta_user);
 
                                 <li class="app-sidebar__heading">Informes</li>
                                 <li>
-                                    <a href="dashboard-boxes.html">
-                                        <i class="metismenu-icon pe-7s-display2"></i>
-                                        Informe de productos utilizados
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="dashboard-boxes.html">
-                                        <i class="metismenu-icon pe-7s-display2"></i>
+                                    <a href="../informe/informe_materiales.php">
+                                        <i class="metismenu-icon fa fa-file"></i>
                                         Informe de materiales
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="dashboard-boxes.html">
-                                        <i class="metismenu-icon pe-7s-display2"></i>
+                                    <a href="../informe/informe_insumos.php">
+                                        <i class="metismenu-icon fa fa-file"></i>
+                                        Informe de insumos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../informe/informe_actividades.php">
+                                        <i class="metismenu-icon fa fa-file"></i>
                                         Informe de actividades
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="dashboard-boxes.html">
-                                        <i class="metismenu-icon pe-7s-display2"></i>
-                                        Informe de cajas del banano
+                                    <a href="../informe/informe_cajas.php">
+                                        <i class="metismenu-icon fa fa-file"></i>
+                                        Informe cajas de banano
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="dashboard-boxes.html">
-                                        <i class="metismenu-icon pe-7s-display2"></i>
-                                        Informe de fruta encintada
+                                    <a href="../informe/informe_encinte.php">
+                                        <i class="metismenu-icon fa fa-file"></i>
+                                        Informe de encinte
+                                    </a>
+                                </li>
+                                <li>
+                                <a href="../informe/informe_producto_usados.php">
+                                        <i class="metismenu-icon fa fa-file"></i>
+                                         Producto utilizado en actividades
                                     </a>
                                 </li>
                             </ul>

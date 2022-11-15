@@ -1370,7 +1370,7 @@ function listar_tipo_herramienta_COMBO() {
     },
   }).done(function (response) {
     var data = JSON.parse(response);
-    var cadena = "<option value=''> --- Ingrese tipo de insumo --- </option>";
+    var cadena = "<option value=''> --- Ingrese tipo de herramienta --- </option>";
     if (data.length > 0) {
       //bucle para extraer los datos del rol
       for (var i = 0; i < data.length; i++) {
