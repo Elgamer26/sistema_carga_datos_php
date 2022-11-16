@@ -89,7 +89,7 @@
 
                                             <div class="col-md-6 mb-3">
                                                 <label for="usuario_l">Usuario</label> <b><label style="color: red;" id="usuario_l_obligg"></label></b>
-                                                <input type="text" maxlength="20" class="form-control" id="usuario_l" placeholder="Ingrese el usuario_l" />
+                                                <input type="text" maxlength="100" class="form-control" id="usuario_l" placeholder="Ingrese el usuario_l" />
                                             </div>
 
                                             <div class="col-md-12 p-3">
@@ -164,7 +164,6 @@
         </div>
     </div>
 </div>
-
 
 <script>
     var correo_usus_lo = true;

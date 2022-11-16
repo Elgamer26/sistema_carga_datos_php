@@ -145,7 +145,7 @@
 
                     <div class="col-md-5 mb-3">
                         <label for="usuario">Usuario</label> <b><label style="color: red;" id="usuario_obligg"></label></b>
-                        <input type="text" maxlength="20" class="form-control" id="usuario" placeholder="Ingrese el usuario" />
+                        <input type="text" maxlength="100" class="form-control" id="usuario" placeholder="Ingrese el usuario" />
                     </div>
 
                     <div class="col-md-12 p-3">

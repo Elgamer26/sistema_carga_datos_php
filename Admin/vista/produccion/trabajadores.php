@@ -112,7 +112,7 @@
 
                     <div class="col-sm-6 form-group">
                         <label>Correo</label> &nbsp;&nbsp; <label style="color:red;" id="correo_obliga"></label>
-                        <input type="text" maxlength="50" class="form-control" id="correo_empleado" placeholder="Ingrese correo">
+                        <input type="text" maxlength="100" class="form-control" id="correo_empleado" placeholder="Ingrese correo">
                         <label for="" id="email_correcto" style="color: red;"></label><br>
                     </div>
 
