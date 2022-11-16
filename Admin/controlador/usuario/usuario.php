@@ -78,6 +78,176 @@ if ($_POST["funcion"] === "registrar_rol") {
     exit();
 }
 
+///////////////////////////////////// 
+if ($_POST["funcion"] === "crear_permisos") {
+
+    $id = htmlspecialchars($_POST["id"], ENT_QUOTES, 'UTF-8');
+
+    $usuario_p = htmlspecialchars($_POST["usuario_p"], ENT_QUOTES, 'UTF-8');
+    $empresa_p = htmlspecialchars($_POST["empresa_p"], ENT_QUOTES, 'UTF-8');
+    $insumo_p = htmlspecialchars($_POST["insumo_p"], ENT_QUOTES, 'UTF-8');
+    $herramienta_p = htmlspecialchars($_POST["herramienta_p"], ENT_QUOTES, 'UTF-8');
+    $proveedor_p = htmlspecialchars($_POST["proveedor_p"], ENT_QUOTES, 'UTF-8');
+    $compra_i_p = htmlspecialchars($_POST["compra_i_p"], ENT_QUOTES, 'UTF-8');
+    $compra_h_p = htmlspecialchars($_POST["compra_h_p"], ENT_QUOTES, 'UTF-8');
+    $actividad_p = htmlspecialchars($_POST["actividad_p"], ENT_QUOTES, 'UTF-8');
+    $trabajador_p = htmlspecialchars($_POST["trabajador_p"], ENT_QUOTES, 'UTF-8');
+    $asiganar_p = htmlspecialchars($_POST["asiganar_p"], ENT_QUOTES, 'UTF-8');
+    $cinta_p = htmlspecialchars($_POST["cinta_p"], ENT_QUOTES, 'UTF-8');
+    $lote_p = htmlspecialchars($_POST["lote_p"], ENT_QUOTES, 'UTF-8');
+    $produccion_p = htmlspecialchars($_POST["produccion_p"], ENT_QUOTES, 'UTF-8');
+    $encinte_p = htmlspecialchars($_POST["encinte_p"], ENT_QUOTES, 'UTF-8');
+    $fruta_p = htmlspecialchars($_POST["fruta_p"], ENT_QUOTES, 'UTF-8');
+    $proceso_c_p = htmlspecialchars($_POST["proceso_c_p"], ENT_QUOTES, 'UTF-8');
+    $data_c_p = htmlspecialchars($_POST["data_c_p"], ENT_QUOTES, 'UTF-8');
+    $proceso_e_p = htmlspecialchars($_POST["proceso_e_p"], ENT_QUOTES, 'UTF-8');
+    $data_f_p = htmlspecialchars($_POST["data_f_p"], ENT_QUOTES, 'UTF-8');
+    $proceso_r_p = htmlspecialchars($_POST["proceso_r_p"], ENT_QUOTES, 'UTF-8');
+    $data_r_p = htmlspecialchars($_POST["data_r_p"], ENT_QUOTES, 'UTF-8');
+    $proceso_p_p = htmlspecialchars($_POST["proceso_p_p"], ENT_QUOTES, 'UTF-8');
+    $data_p_p = htmlspecialchars($_POST["data_p_p"], ENT_QUOTES, 'UTF-8');
+    $prediccion_c_p = htmlspecialchars($_POST["prediccion_c_p"], ENT_QUOTES, 'UTF-8');
+    $prediccion_e_p = htmlspecialchars($_POST["prediccion_e_p"], ENT_QUOTES, 'UTF-8');
+    $prediccion_r_p = htmlspecialchars($_POST["prediccion_r_p"], ENT_QUOTES, 'UTF-8');
+    $prediccion_p_p = htmlspecialchars($_POST["prediccion_p_p"], ENT_QUOTES, 'UTF-8');
+    $informe_p = htmlspecialchars($_POST["informe_p"], ENT_QUOTES, 'UTF-8');
+
+    $consulta = $MU->crear_permisos(
+        $id,
+        $usuario_p,
+        $empresa_p,
+        $insumo_p,
+        $herramienta_p,
+        $proveedor_p,
+        $compra_i_p,
+        $compra_h_p,
+        $actividad_p,
+        $trabajador_p,
+        $asiganar_p,
+        $cinta_p,
+        $lote_p,
+        $produccion_p,
+        $encinte_p,
+        $fruta_p,
+        $proceso_c_p,
+        $data_c_p,
+        $proceso_e_p,
+        $data_f_p,
+        $proceso_r_p,
+        $data_r_p,
+        $proceso_p_p,
+        $data_p_p,
+        $prediccion_c_p,
+        $prediccion_e_p,
+        $prediccion_r_p,
+        $prediccion_p_p,
+        $informe_p
+    );
+
+    echo $consulta;
+    exit();
+}
+
+///////////////////////////////////// 
+if ($_POST["funcion"] === "obtener_permisos") {
+
+    $id = htmlspecialchars($_POST["id"], ENT_QUOTES, 'UTF-8');
+    $consulta = $MU->obtener_permisos($id);
+    $datos = json_encode($consulta, JSON_UNESCAPED_UNICODE);
+    if (count($consulta) > 0) {
+        echo $datos;
+    } else {
+        echo 0;
+    }
+
+    exit();
+}
+
+///////////////////////////////////// 
+if ($_POST["funcion"] === "obtener_permisos_usuario") {
+
+    $id = $_SESSION["id_rol"];
+    $consulta = $MU->obtener_permisos($id);
+    $datos = json_encode($consulta, JSON_UNESCAPED_UNICODE);
+    if (count($consulta) > 0) {
+        echo $datos;
+    } else {
+        echo 0;
+    }
+
+    exit();
+}
+
+///////////////////////////////////// 
+if ($_POST["funcion"] === "editar_permisos") {
+
+    $id = htmlspecialchars($_POST["id"], ENT_QUOTES, 'UTF-8');
+
+    $usuario_p = htmlspecialchars($_POST["usuario_p"], ENT_QUOTES, 'UTF-8');
+    $empresa_p = htmlspecialchars($_POST["empresa_p"], ENT_QUOTES, 'UTF-8');
+    $insumo_p = htmlspecialchars($_POST["insumo_p"], ENT_QUOTES, 'UTF-8');
+    $herramienta_p = htmlspecialchars($_POST["herramienta_p"], ENT_QUOTES, 'UTF-8');
+    $proveedor_p = htmlspecialchars($_POST["proveedor_p"], ENT_QUOTES, 'UTF-8');
+    $compra_i_p = htmlspecialchars($_POST["compra_i_p"], ENT_QUOTES, 'UTF-8');
+    $compra_h_p = htmlspecialchars($_POST["compra_h_p"], ENT_QUOTES, 'UTF-8');
+    $actividad_p = htmlspecialchars($_POST["actividad_p"], ENT_QUOTES, 'UTF-8');
+    $trabajador_p = htmlspecialchars($_POST["trabajador_p"], ENT_QUOTES, 'UTF-8');
+    $asiganar_p = htmlspecialchars($_POST["asiganar_p"], ENT_QUOTES, 'UTF-8');
+    $cinta_p = htmlspecialchars($_POST["cinta_p"], ENT_QUOTES, 'UTF-8');
+    $lote_p = htmlspecialchars($_POST["lote_p"], ENT_QUOTES, 'UTF-8');
+    $produccion_p = htmlspecialchars($_POST["produccion_p"], ENT_QUOTES, 'UTF-8');
+    $encinte_p = htmlspecialchars($_POST["encinte_p"], ENT_QUOTES, 'UTF-8');
+    $fruta_p = htmlspecialchars($_POST["fruta_p"], ENT_QUOTES, 'UTF-8');
+    $proceso_c_p = htmlspecialchars($_POST["proceso_c_p"], ENT_QUOTES, 'UTF-8');
+    $data_c_p = htmlspecialchars($_POST["data_c_p"], ENT_QUOTES, 'UTF-8');
+    $proceso_e_p = htmlspecialchars($_POST["proceso_e_p"], ENT_QUOTES, 'UTF-8');
+    $data_f_p = htmlspecialchars($_POST["data_f_p"], ENT_QUOTES, 'UTF-8');
+    $proceso_r_p = htmlspecialchars($_POST["proceso_r_p"], ENT_QUOTES, 'UTF-8');
+    $data_r_p = htmlspecialchars($_POST["data_r_p"], ENT_QUOTES, 'UTF-8');
+    $proceso_p_p = htmlspecialchars($_POST["proceso_p_p"], ENT_QUOTES, 'UTF-8');
+    $data_p_p = htmlspecialchars($_POST["data_p_p"], ENT_QUOTES, 'UTF-8');
+    $prediccion_c_p = htmlspecialchars($_POST["prediccion_c_p"], ENT_QUOTES, 'UTF-8');
+    $prediccion_e_p = htmlspecialchars($_POST["prediccion_e_p"], ENT_QUOTES, 'UTF-8');
+    $prediccion_r_p = htmlspecialchars($_POST["prediccion_r_p"], ENT_QUOTES, 'UTF-8');
+    $prediccion_p_p = htmlspecialchars($_POST["prediccion_p_p"], ENT_QUOTES, 'UTF-8');
+    $informe_p = htmlspecialchars($_POST["informe_p"], ENT_QUOTES, 'UTF-8');
+
+    $consulta = $MU->editar_permisos(
+        $id,
+        $usuario_p,
+        $empresa_p,
+        $insumo_p,
+        $herramienta_p,
+        $proveedor_p,
+        $compra_i_p,
+        $compra_h_p,
+        $actividad_p,
+        $trabajador_p,
+        $asiganar_p,
+        $cinta_p,
+        $lote_p,
+        $produccion_p,
+        $encinte_p,
+        $fruta_p,
+        $proceso_c_p,
+        $data_c_p,
+        $proceso_e_p,
+        $data_f_p,
+        $proceso_r_p,
+        $data_r_p,
+        $proceso_p_p,
+        $data_p_p,
+        $prediccion_c_p,
+        $prediccion_e_p,
+        $prediccion_r_p,
+        $prediccion_p_p,
+        $informe_p
+    );
+
+    echo $consulta;
+    exit();
+}
+
 /////////////////////////////////////
 if ($_POST["funcion"] === "estado_rol") {
     $id = htmlspecialchars($_POST["id"], ENT_QUOTES, 'UTF-8');
@@ -214,7 +384,7 @@ if ($_POST["funcion"] === "editando_usuario_logeado") {
     $id = $_SESSION["id_usu"];
     $nombres = htmlspecialchars($_POST["nombre"], ENT_QUOTES, 'UTF-8');
     $apellidos = htmlspecialchars($_POST["apellido"], ENT_QUOTES, 'UTF-8');
-    $correo = htmlspecialchars($_POST["correo"], ENT_QUOTES, 'UTF-8'); 
+    $correo = htmlspecialchars($_POST["correo"], ENT_QUOTES, 'UTF-8');
     $usuario = htmlspecialchars($_POST["usuarios"], ENT_QUOTES, 'UTF-8');
 
     $consulta = $MU->editando_usuario_logeado($id, $nombres, $apellidos, $correo, $usuario);
@@ -253,7 +423,7 @@ if ($_POST["funcion"] === "editar_foto_usuario_logeado") {
 if ($_POST["funcion"] === "editar_passwoed_logeado") {
 
     $id = $_SESSION["id_usu"];
-    $pass_nue = htmlspecialchars($_POST["pass_nue"], ENT_QUOTES, 'UTF-8'); 
+    $pass_nue = htmlspecialchars($_POST["pass_nue"], ENT_QUOTES, 'UTF-8');
 
     $consulta = $MU->editar_passwoed_logeado($id, $pass_nue);
     echo $consulta;

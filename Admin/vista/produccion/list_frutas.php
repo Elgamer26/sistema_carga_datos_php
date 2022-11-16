@@ -8,7 +8,7 @@
                     <i class="fa fa-list"> </i>
                 </div>
                 <div>
-                    Listado de frutas
+                    Listado de frutas - <a style="color: white;" href="../produccion/frutas.php" class="btn btn-success "><i class="fa fa-plus"></i> Registro de fruta</a>
                     <div class="page-title-subheading">
                         Lista de frutas
                     </div>

@@ -169,6 +169,8 @@
 <script>
     var correo_usus_lo = true;
     datos_usuario_logeado();
+    obtener_permisos_usuario();
+    
 
     //////
     /// par los graficos
@@ -318,4 +320,132 @@
             correo_usus_lo = false;
         }
     });
+
+    function obtener_permisos_usuario() {
+        funcion = "obtener_permisos_usuario";
+        $.ajax({
+            url: "../../controlador/usuario/usuario.php",
+            type: "POST",
+            data: {
+                funcion: funcion
+            },
+        }).done(function(response) {
+            var data = JSON.parse(response);
+
+            console.log(data);
+
+            data[0][2].toString() == "true" ?
+                ($("#usuario_p_").show()) :
+                ($("#usuario_p_").hide());
+
+            data[0][3].toString() == "true" ?
+                ($("#empresa_p_").show()) :
+                ($("#empresa_p_").hide());
+
+            data[0][4].toString() == "true" ?
+                ($("#insumo_p_").show()) :
+                ($("#insumo_p_").hide());
+
+            data[0][5].toString() == "true" ?
+                ($("#herramienta_p_").show()) :
+                ($("#herramienta_p_").hide());
+
+            data[0][6].toString() == "true" ?
+                ($("#proveedor_p_").show()) :
+                ($("#proveedor_p_").hide());
+
+            data[0][7].toString() == "true" ?
+                ($("#compra_i_p_").show()) :
+                ($("#compra_i_p_").hide());
+
+            data[0][8].toString() == "true" ?
+                ($("#compra_h_p_").show()) :
+                ($("#compra_h_p_").hide());
+
+            data[0][9].toString() == "true" ?
+                ($("#actividad_p_").show()) :
+                ($("#actividad_p_").hide());
+
+            data[0][10].toString() == "true" ?
+                ($("#trabajador_p_").show()) :
+                ($("#trabajador_p_").hide());
+
+            data[0][11].toString() == "true" ?
+                ($("#asiganar_p_").show()) :
+                ($("#asiganar_p_").hide());
+
+            data[0][12].toString() == "true" ?
+                ($("#cinta_p_").show()) :
+                ($("#cinta_p_").hide());
+
+            data[0][13].toString() == "true" ?
+                ($("#lote_p_").show()) :
+                ($("#lote_p_").hide());
+
+            data[0][14].toString() == "true" ?
+                ($("#produccion_p_").show()) :
+                ($("#produccion_p_").hide());
+
+            data[0][15].toString() == "true" ?
+                ($("#encinte_p_").show()) :
+                ($("#encinte_p_").hide());
+
+            data[0][16].toString() == "true" ?
+                ($("#fruta_p_").show()) :
+                ($("#fruta_p_").hide());
+
+            data[0][17].toString() == "true" ?
+                ($("#proceso_c_p_").show()) :
+                ($("#proceso_c_p_").hide());
+
+            data[0][18].toString() == "true" ?
+                ($("#data_c_p_").show()) :
+                ($("#data_c_p_").hide());
+
+            data[0][19].toString() == "true" ?
+                ($("#proceso_e_p_").show()) :
+                ($("#proceso_e_p_").hide());
+
+            data[0][20].toString() == "true" ?
+                ($("#data_f_p_").show()) :
+                ($("#data_f_p_").hide());
+
+            data[0][21].toString() == "true" ?
+                ($("#proceso_r_p_").show()) :
+                ($("#proceso_r_p_").hide());
+
+            data[0][22].toString() == "true" ?
+                ($("#data_r_p_").show()) :
+                ($("#data_r_p_").hide());
+
+            data[0][23].toString() == "true" ?
+                ($("#proceso_p_p_").show()) :
+                ($("#proceso_p_p_").hide());
+
+            data[0][24].toString() == "true" ?
+                ($("#data_p_p_").show()) :
+                ($("#data_p_p_").hide());
+
+            data[0][25].toString() == "true" ?
+                ($("#prediccion_c_p_").show()) :
+                ($("#prediccion_c_p_").hide());
+
+            data[0][26].toString() == "true" ?
+                ($("#prediccion_e_p_").show()) :
+                ($("#prediccion_e_p_").hide());
+
+            data[0][27].toString() == "true" ?
+                ($("#prediccion_r_p_").show()) :
+                ($("#prediccion_r_p_").hide());
+
+            data[0][28].toString() == "true" ?
+                ($("#prediccion_p_p_").show()) :
+                ($("#prediccion_p_p_").hide());
+
+            data[0][29].toString() == "true" ?
+                ($(".informe_p_").show()) :
+                ($(".informe_p_").hide());
+
+        });
+    }
 </script>

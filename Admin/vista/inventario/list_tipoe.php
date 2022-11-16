@@ -8,8 +8,8 @@
                     <i class="fa fa-list"> </i>
                 </div>
                 <div>
-                    Listado tipo de herramienta - <a style="color: white;" href="../inventario/tipo_herramienta.php" class="btn btn-primary "><i class="fa fa-plus"></i> Nuevo registro</a>
-                    <div class="page-title-subheading">
+                    Listado tipo de herramienta - <a style="color: white;" href="../inventario/tipo_herramienta.php" class="btn btn-primary "><i class="fa fa-plus"></i> Nuevo tipo</a> - <a style="color: white;" href="../inventario/list_herramienta.php" class="btn btn-success"><i class="fa fa-wrench"></i> Herramienta</a>
+                    <div class="page-title-subheading"> 
                         Lista de tipos de herramientas disponibles
                     </div>
                 </div>

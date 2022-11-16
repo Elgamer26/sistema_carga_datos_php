@@ -133,12 +133,203 @@ class modelo_usuario extends modelo_conexion
                 $querya->bindParam(1, $nombre);
 
                 if ($querya->execute()) {
-                    $res = 1;
+                    $res = $c->lastInsertId();
                 } else {
                     $res = 0;
                 }
             } else {
                 $res = 2; // ya esxiste
+            }
+            return $res;
+
+            //cerramos la conexion
+            modelo_conexion::cerrar_conexion();
+        } catch (Exception $e) {
+            modelo_conexion::cerrar_conexion();
+            echo "Error: " . $e->getMessage();
+        }
+        exit();
+    }
+
+    function crear_permisos(
+        $id,
+        string $usuario_p,
+        string $empresa_p,
+        string $insumo_p,
+        string $herramienta_p,
+        string $proveedor_p,
+        string $compra_i_p,
+        string $compra_h_p,
+        string $actividad_p,
+        string $trabajador_p,
+        string $asiganar_p,
+        string $cinta_p,
+        string $lote_p,
+        string $produccion_p,
+        string $encinte_p,
+        string $fruta_p,
+        string $proceso_c_p,
+        string $data_c_p,
+        string $proceso_e_p,
+        string $data_f_p,
+        string $proceso_r_p,
+        string $data_r_p,
+        string $proceso_p_p,
+        string $data_p_p,
+        string $prediccion_c_p,
+        string $prediccion_e_p,
+        string $prediccion_r_p,
+        string $prediccion_p_p,
+        string $informe_p
+    ) {
+        try {
+            $res = "";
+            $c = modelo_conexion::conexionPDO();
+            $sql_a = "INSERT INTO permisos (id_rol, usuario, empresa, insumo, herramienta, proveedor, c_insumo, c_herramienta, actividades, trabajadores, asignar_actividad, cintas, lotes, produccion, encinte, frutas, proceso_cajas, data_cajas, proceso_enfunde, data_enfunde, proceso_recobro, data_recobro, proceso_produccion, data_produccion, prediccion_cajas, prediccion_enfunde, prediccion_recobro, prediccion_produccion, informes) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            $querya = $c->prepare($sql_a);
+            $querya->bindParam(1, $id);
+
+            $querya->bindParam(2, $usuario_p);
+            $querya->bindParam(3, $empresa_p);
+            $querya->bindParam(4, $insumo_p);
+            $querya->bindParam(5, $herramienta_p);
+            $querya->bindParam(6, $proveedor_p);
+            $querya->bindParam(7, $compra_i_p);
+            $querya->bindParam(8, $compra_h_p);
+            $querya->bindParam(9, $actividad_p);
+            $querya->bindParam(10, $trabajador_p);
+            $querya->bindParam(11, $asiganar_p);
+            $querya->bindParam(12, $cinta_p);
+            $querya->bindParam(13, $lote_p);
+            $querya->bindParam(14, $produccion_p);
+            $querya->bindParam(15, $encinte_p);
+            $querya->bindParam(16, $fruta_p);
+            $querya->bindParam(17, $proceso_c_p);
+            $querya->bindParam(18, $data_c_p);
+            $querya->bindParam(19, $proceso_e_p);
+            $querya->bindParam(20, $data_f_p);
+            $querya->bindParam(21, $proceso_r_p);
+
+            $querya->bindParam(22, $data_r_p);
+            $querya->bindParam(23, $proceso_p_p);
+            $querya->bindParam(24, $data_p_p);
+            $querya->bindParam(25, $prediccion_c_p);
+            $querya->bindParam(26, $prediccion_e_p);
+            $querya->bindParam(27, $prediccion_r_p);
+            $querya->bindParam(28, $prediccion_p_p);
+            $querya->bindParam(29, $informe_p);
+
+            if ($querya->execute()) {
+                $res = 1; // SE INSERT CORRECTAMENTE
+            } else {
+                $res = 0; // FALLO EN LA MATRIX
+            }
+            return $res;
+
+            //cerramos la conexion
+            modelo_conexion::cerrar_conexion();
+        } catch (Exception $e) {
+            modelo_conexion::cerrar_conexion();
+            echo "Error: " . $e->getMessage();
+        }
+        exit();
+    }
+
+    function obtener_permisos($id)
+    {
+        try {
+            $c = modelo_conexion::conexionPDO();
+            $sql = "SELECT * FROM permisos WHERE id_rol = ?";
+            $query = $c->prepare($sql);
+            $query->bindParam(1, $id);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_BOTH);
+            $arreglo = array();
+            foreach ($result as $respuesta) {
+                $arreglo[] = $respuesta;
+            }
+            return $arreglo;
+            //cerramos la conexion
+            modelo_conexion::cerrar_conexion();
+        } catch (Exception $e) {
+            modelo_conexion::cerrar_conexion();
+            echo "Error: " . $e->getMessage();
+        }
+        exit();
+    }
+
+    function editar_permisos(
+        $id,
+        string $usuario_p,
+        string $empresa_p,
+        string $insumo_p,
+        string $herramienta_p,
+        string $proveedor_p,
+        string $compra_i_p,
+        string $compra_h_p,
+        string $actividad_p,
+        string $trabajador_p,
+        string $asiganar_p,
+        string $cinta_p,
+        string $lote_p,
+        string $produccion_p,
+        string $encinte_p,
+        string $fruta_p,
+        string $proceso_c_p,
+        string $data_c_p,
+        string $proceso_e_p,
+        string $data_f_p,
+        string $proceso_r_p,
+        string $data_r_p,
+        string $proceso_p_p,
+        string $data_p_p,
+        string $prediccion_c_p,
+        string $prediccion_e_p,
+        string $prediccion_r_p,
+        string $prediccion_p_p,
+        string $informe_p
+    ) {
+        try {
+            $res = "";
+            $c = modelo_conexion::conexionPDO();
+            $sql_a = "UPDATE permisos SET usuario = ?, empresa = ?, insumo = ?, herramienta = ?, proveedor = ?, c_insumo = ?, c_herramienta = ?, actividades = ?, trabajadores = ?, asignar_actividad = ?, cintas = ?, lotes = ?, produccion = ?, encinte = ?, frutas = ?, proceso_cajas = ?, data_cajas = ?, proceso_enfunde = ?, data_enfunde = ?, proceso_recobro = ?, data_recobro = ?, proceso_produccion = ?, data_produccion = ?, prediccion_cajas = ?, prediccion_enfunde = ?, prediccion_recobro = ?, prediccion_produccion = ?, informes = ?
+            WHERE id_rol = ?";
+            $querya = $c->prepare($sql_a);
+            $querya->bindParam(1, $usuario_p);
+            $querya->bindParam(2, $empresa_p);
+            $querya->bindParam(3, $insumo_p);
+            $querya->bindParam(4, $herramienta_p);
+            $querya->bindParam(5, $proveedor_p);
+            $querya->bindParam(6, $compra_i_p);
+            $querya->bindParam(7, $compra_h_p);
+            $querya->bindParam(8, $actividad_p);
+            $querya->bindParam(9, $trabajador_p);
+            $querya->bindParam(10, $asiganar_p);
+            $querya->bindParam(11, $cinta_p);
+            $querya->bindParam(12, $lote_p);
+            $querya->bindParam(13, $produccion_p);
+            $querya->bindParam(14, $encinte_p);
+            $querya->bindParam(15, $fruta_p);
+            $querya->bindParam(16, $proceso_c_p);
+            $querya->bindParam(17, $data_c_p);
+            $querya->bindParam(18, $proceso_e_p);
+            $querya->bindParam(19, $data_f_p);
+            $querya->bindParam(20, $proceso_r_p);
+            $querya->bindParam(21, $data_r_p);
+            $querya->bindParam(22, $proceso_p_p);
+            $querya->bindParam(23, $data_p_p);
+            $querya->bindParam(24, $prediccion_c_p);
+            $querya->bindParam(25, $prediccion_e_p);
+            $querya->bindParam(26, $prediccion_r_p);
+            $querya->bindParam(27, $prediccion_p_p);
+            $querya->bindParam(28, $informe_p);
+            $querya->bindParam(29, $id);
+
+            if ($querya->execute()) {
+                $res = 1; // SE INSERT CORRECTAMENTE
+            } else {
+                $res = 0; // FALLO EN LA MATRIX
             }
             return $res;
 

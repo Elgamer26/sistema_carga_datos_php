@@ -9,6 +9,7 @@
                 </div>
                 <div>
                     Listado de insumo - <a style="color: white;" href="../inventario/crear_insumo.php" class="btn btn-primary "><i class="fa fa-plus"></i> Nuevo registro</a>
+                    - <a style="color: white;" href="../inventario/list_tipoi.php" class="btn btn-danger "><i class="fa fa-bookmark"></i> Tipo de insumo</a>
                     <div class="page-title-subheading">
                         Lista de insumos disponibles
                     </div>

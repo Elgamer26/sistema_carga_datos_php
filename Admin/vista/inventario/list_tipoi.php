@@ -8,7 +8,7 @@
                     <i class="fa fa-list"> </i>
                 </div>
                 <div>
-                    Listado tipo de insumo - <a style="color: white;" href="../inventario/tipo_inventario.php" class="btn btn-primary "><i class="fa fa-plus"></i> Nuevo registro</a>
+                    Listado tipo de insumo - <a style="color: white;" href="../inventario/tipo_inventario.php" class="btn btn-primary "><i class="fa fa-plus"></i> Nuevo tipo</a> - <a style="color: white;" href="../inventario/list_insumo.php" class="btn btn-success"><i class="fa fa-wrench"></i> Insumo</a>
                     <div class="page-title-subheading">
                         Lista de tipos de insumos disponibles
                     </div>

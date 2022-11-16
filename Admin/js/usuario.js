@@ -109,9 +109,13 @@ function listar_rol() {
         data: "estado",
         render: function (data, type, row) {
           if (data == 1) {
-            return `<button style='font-size:13px;' type='button' class='inactivar btn btn-danger' title='Inactivar el rol'><i class='fa fa-times'></i></button> - <button style='font-size:13px;' type='button' class='editar btn btn-primary' title='Editar el rol'><i class='fa fa-edit'></i></button>`;
+            return `<button style='font-size:13px;' type='button' class='inactivar btn btn-danger' title='Inactivar el rol'><i class='fa fa-times'></i></button> 
+            - <button style='font-size:13px;' type='button' class='editar btn btn-primary' title='Editar el rol'><i class='fa fa-edit'></i></button> - 
+            <button style='font-size:13px;' type='button' class='keysss btn btn-warning' title='Editar los permisos'><i class='fa fa-key'></i></button>`;
           } else {
-            return `<button style='font-size:13px;' type='button' class='activar btn btn-success' title='Activar el rol'><i class='fa fa-check'></i></button> - <button style='font-size:13px;' type='button' class='editar btn btn-primary' title='Editar el rol'><i class='fa fa-edit'></i></button>`;
+            return `<button style='font-size:13px;' type='button' class='activar btn btn-success' title='Activar el rol'><i class='fa fa-check'></i></button> 
+            - <button style='font-size:13px;' type='button' class='editar btn btn-primary' title='Editar el rol'><i class='fa fa-edit'></i></button> - 
+            <button style='font-size:13px;' type='button' class='keysss btn btn-warning' title='Editar los permisos'><i class='fa fa-key'></i></button>`;
           }
         },
       },
@@ -189,6 +193,253 @@ function listar_rol() {
       .each(function (cell, i) {
         cell.innerHTML = i + 1 + pageinfo.start;
       });
+  });
+}
+
+$("#tabla_rol").on("click", ".keysss", function () {
+  //esto esta extrayendo los datos de la tabla el (data)
+  var data = tabla_rol.row($(this).parents("tr")).data(); //a que fila deteta que doy click
+  //esta condicion es importante para el responsibe porque salda un error si no lo pongo
+  if (tabla_rol.row(this).child.isShown()) {
+    //esto es cuando esta en tamaño responsibo
+    var data = tabla_rol.row(this).data();
+  }
+
+  var id = data.rol_id;
+
+  alerta = [
+    "Permisos",
+    "Se estan obteniendo los permisos actuales, por favor espere....",
+    ".:Obteniendo permisos:.",
+  ];
+  mostar_loader_datos(alerta);
+  obtener_permisos(parseInt(id));
+});
+
+function obtener_permisos(id) {
+  funcion = "obtener_permisos";
+  $.ajax({
+    url: "../../controlador/usuario/usuario.php",
+    type: "POST",
+    data: { funcion: funcion, id: id },
+  }).done(function (response) {
+    var data = JSON.parse(response);
+
+    $("#id_rol_permiso").val(id);
+
+    data[0][2].toString() == "true"
+      ? ($("#usuario_p")[0].checked = true)
+      : ($("#usuario_p")[0].checked = false);
+
+    data[0][3].toString() == "true"
+      ? ($("#empresa_p")[0].checked = true)
+      : ($("#empresa_p")[0].checked = false);
+
+    data[0][4].toString() == "true"
+      ? ($("#insumo_p")[0].checked = true)
+      : ($("#insumo_p")[0].checked = false);
+
+    data[0][5].toString() == "true"
+      ? ($("#herramienta_p")[0].checked = true)
+      : ($("#herramienta_p")[0].checked = false);
+
+    data[0][6].toString() == "true"
+      ? ($("#proveedor_p")[0].checked = true)
+      : ($("#proveedor_p")[0].checked = false);
+
+    data[0][7].toString() == "true"
+      ? ($("#compra_i_p")[0].checked = true)
+      : ($("#compra_i_p")[0].checked = false);
+
+    data[0][8].toString() == "true"
+      ? ($("#compra_h_p")[0].checked = true)
+      : ($("#compra_h_p")[0].checked = false);
+
+    data[0][9].toString() == "true"
+      ? ($("#actividad_p")[0].checked = true)
+      : ($("#actividad_p")[0].checked = false);
+
+    data[0][10].toString() == "true"
+      ? ($("#trabajador_p")[0].checked = true)
+      : ($("#trabajador_p")[0].checked = false);
+
+    data[0][11].toString() == "true"
+      ? ($("#asiganar_p")[0].checked = true)
+      : ($("#asiganar_p")[0].checked = false);
+
+    data[0][12].toString() == "true"
+      ? ($("#cinta_p")[0].checked = true)
+      : ($("#cinta_p")[0].checked = false);
+
+    data[0][13].toString() == "true"
+      ? ($("#lote_p")[0].checked = true)
+      : ($("#lote_p")[0].checked = false);
+
+    data[0][14].toString() == "true"
+      ? ($("#produccion_p")[0].checked = true)
+      : ($("#produccion_p")[0].checked = false);
+
+    data[0][15].toString() == "true"
+      ? ($("#encinte_p")[0].checked = true)
+      : ($("#encinte_p")[0].checked = false);
+
+    data[0][16].toString() == "true"
+      ? ($("#fruta_p")[0].checked = true)
+      : ($("#fruta_p")[0].checked = false);
+
+    data[0][17].toString() == "true"
+      ? ($("#proceso_c_p")[0].checked = true)
+      : ($("#proceso_c_p")[0].checked = false);
+
+    data[0][18].toString() == "true"
+      ? ($("#data_c_p")[0].checked = true)
+      : ($("#data_c_p")[0].checked = false);
+
+    data[0][19].toString() == "true"
+      ? ($("#proceso_e_p")[0].checked = true)
+      : ($("#proceso_e_p")[0].checked = false);
+
+    data[0][20].toString() == "true"
+      ? ($("#data_f_p")[0].checked = true)
+      : ($("#data_f_p")[0].checked = false);
+
+    data[0][21].toString() == "true"
+      ? ($("#proceso_r_p")[0].checked = true)
+      : ($("#proceso_r_p")[0].checked = false);
+
+    data[0][22].toString() == "true"
+      ? ($("#data_r_p")[0].checked = true)
+      : ($("#data_r_p")[0].checked = false);
+
+    data[0][23].toString() == "true"
+      ? ($("#proceso_p_p")[0].checked = true)
+      : ($("#proceso_p_p")[0].checked = false);
+
+    data[0][24].toString() == "true"
+      ? ($("#data_p_p")[0].checked = true)
+      : ($("#data_p_p")[0].checked = false);
+
+    data[0][25].toString() == "true"
+      ? ($("#prediccion_c_p")[0].checked = true)
+      : ($("#prediccion_c_p")[0].checked = false);
+
+    data[0][26].toString() == "true"
+      ? ($("#prediccion_e_p")[0].checked = true)
+      : ($("#prediccion_e_p")[0].checked = false);
+
+    data[0][27].toString() == "true"
+      ? ($("#prediccion_r_p")[0].checked = true)
+      : ($("#prediccion_r_p")[0].checked = false);
+
+    data[0][28].toString() == "true"
+      ? ($("#prediccion_p_p")[0].checked = true)
+      : ($("#prediccion_p_p")[0].checked = false);
+
+    data[0][29].toString() == "true"
+      ? ($("#informe_p")[0].checked = true)
+      : ($("#informe_p")[0].checked = false);
+
+    alerta = ["none", "", ""];
+    cerrar_loader_datos(alerta);
+
+    if (id == 1) {
+      $("#btn_editar_p").hide();
+    } else {
+      $("#btn_editar_p").show();
+    }
+
+    $("#modal_permisos").modal({
+      backdrop: "static",
+      keyboard: false,
+    });
+    $("#modal_permisos").modal("show");
+  });
+}
+
+function editar_permisos(id) {
+  var id = document.getElementById("id_rol_permiso").value;
+  var usuario_p = document.getElementById("usuario_p").checked;
+  var empresa_p = document.getElementById("empresa_p").checked;
+  var insumo_p = document.getElementById("insumo_p").checked;
+  var herramienta_p = document.getElementById("herramienta_p").checked;
+  var proveedor_p = document.getElementById("proveedor_p").checked;
+  var compra_i_p = document.getElementById("compra_i_p").checked;
+  var compra_h_p = document.getElementById("compra_h_p").checked;
+  var actividad_p = document.getElementById("actividad_p").checked;
+  var trabajador_p = document.getElementById("trabajador_p").checked;
+  var asiganar_p = document.getElementById("asiganar_p").checked;
+  var cinta_p = document.getElementById("cinta_p").checked;
+  var lote_p = document.getElementById("lote_p").checked;
+  var produccion_p = document.getElementById("produccion_p").checked;
+  var encinte_p = document.getElementById("encinte_p").checked;
+  var fruta_p = document.getElementById("fruta_p").checked;
+  var proceso_c_p = document.getElementById("proceso_c_p").checked;
+  var data_c_p = document.getElementById("data_c_p").checked;
+  var proceso_e_p = document.getElementById("proceso_e_p").checked;
+  var data_f_p = document.getElementById("data_f_p").checked;
+  var proceso_r_p = document.getElementById("proceso_r_p").checked;
+  var data_r_p = document.getElementById("data_r_p").checked;
+  var proceso_p_p = document.getElementById("proceso_p_p").checked;
+  var data_p_p = document.getElementById("data_p_p").checked;
+  var prediccion_c_p = document.getElementById("prediccion_c_p").checked;
+  var prediccion_e_p = document.getElementById("prediccion_e_p").checked;
+  var prediccion_r_p = document.getElementById("prediccion_r_p").checked;
+  var prediccion_p_p = document.getElementById("prediccion_p_p").checked;
+  var informe_p = document.getElementById("informe_p").checked;
+
+  funcion = "editar_permisos";
+  $.ajax({
+    url: "../../controlador/usuario/usuario.php",
+    type: "POST",
+    data: {
+      funcion: funcion,
+      id: id,
+      usuario_p: usuario_p,
+      empresa_p: empresa_p,
+      insumo_p: insumo_p,
+      herramienta_p: herramienta_p,
+      proveedor_p: proveedor_p,
+      compra_i_p: compra_i_p,
+      compra_h_p: compra_h_p,
+      actividad_p: actividad_p,
+      trabajador_p: trabajador_p,
+      asiganar_p: asiganar_p,
+      cinta_p: cinta_p,
+      lote_p: lote_p,
+      produccion_p: produccion_p,
+      encinte_p: encinte_p,
+      fruta_p: fruta_p,
+      proceso_c_p: proceso_c_p,
+      data_c_p: data_c_p,
+      proceso_e_p: proceso_e_p,
+      data_f_p: data_f_p,
+      proceso_r_p: proceso_r_p,
+      data_r_p: data_r_p,
+      proceso_p_p: proceso_p_p,
+      data_p_p: data_p_p,
+      prediccion_c_p: prediccion_c_p,
+      prediccion_e_p: prediccion_e_p,
+      prediccion_r_p: prediccion_r_p,
+      prediccion_p_p: prediccion_p_p,
+      informe_p: informe_p,
+    },
+  }).done(function (response) {
+    console.log(response);
+
+    if (response > 0) {
+      if (response == 1) {
+        alerta = ["exito", "success", "Los permisos de editaron con exito"];
+        cerrar_loader_datos(alerta);
+        $("#modal_permisos").modal("hide");
+      }
+    } else {
+      alerta = [
+        "error",
+        "error",
+        "No se pudo editar los permisos - FALLO EN LA MATRIX:(",
+      ];
+      cerrar_loader_datos(alerta);
+    }
   });
 }
 
@@ -309,23 +560,106 @@ function registra_rol() {
     },
   }).done(function (resp) {
     if (resp > 0) {
-      if (resp == 1) {
-        alerta = ["exito", "success", "El rol se registro con exito"];
-        cerrar_loader_datos(alerta);
-        $("#nombre_rol").val("");
-      } else if (resp == 2) {
+      if (resp == 2) {
         alerta = [
           "existe",
           "warning",
           "El rol '" + nombre + "', ya esta registrado",
         ];
         cerrar_loader_datos(alerta);
+      } else {
+        registrar_permisos(parseInt(resp));
       }
     } else {
       alerta = [
         "error",
         "error",
         "Error al registrar el rol, falla en la matrix",
+      ];
+      cerrar_loader_datos(alerta);
+    }
+  });
+}
+
+function registrar_permisos(id) {
+  var id = id;
+  var usuario_p = document.getElementById("usuario_p").checked;
+  var empresa_p = document.getElementById("empresa_p").checked;
+  var insumo_p = document.getElementById("insumo_p").checked;
+  var herramienta_p = document.getElementById("herramienta_p").checked;
+  var proveedor_p = document.getElementById("proveedor_p").checked;
+  var compra_i_p = document.getElementById("compra_i_p").checked;
+  var compra_h_p = document.getElementById("compra_h_p").checked;
+  var actividad_p = document.getElementById("actividad_p").checked;
+  var trabajador_p = document.getElementById("trabajador_p").checked;
+  var asiganar_p = document.getElementById("asiganar_p").checked;
+  var cinta_p = document.getElementById("cinta_p").checked;
+  var lote_p = document.getElementById("lote_p").checked;
+  var produccion_p = document.getElementById("produccion_p").checked;
+  var encinte_p = document.getElementById("encinte_p").checked;
+  var fruta_p = document.getElementById("fruta_p").checked;
+  var proceso_c_p = document.getElementById("proceso_c_p").checked;
+  var data_c_p = document.getElementById("data_c_p").checked;
+  var proceso_e_p = document.getElementById("proceso_e_p").checked;
+  var data_f_p = document.getElementById("data_f_p").checked;
+  var proceso_r_p = document.getElementById("proceso_r_p").checked;
+  var data_r_p = document.getElementById("data_r_p").checked;
+  var proceso_p_p = document.getElementById("proceso_p_p").checked;
+  var data_p_p = document.getElementById("data_p_p").checked;
+  var prediccion_c_p = document.getElementById("prediccion_c_p").checked;
+  var prediccion_e_p = document.getElementById("prediccion_e_p").checked;
+  var prediccion_r_p = document.getElementById("prediccion_r_p").checked;
+  var prediccion_p_p = document.getElementById("prediccion_p_p").checked;
+  var informe_p = document.getElementById("informe_p").checked;
+
+  funcion = "crear_permisos";
+  $.ajax({
+    url: "../../controlador/usuario/usuario.php",
+    type: "POST",
+    data: {
+      funcion: funcion,
+      id: id,
+      usuario_p: usuario_p,
+      empresa_p: empresa_p,
+      insumo_p: insumo_p,
+      herramienta_p: herramienta_p,
+      proveedor_p: proveedor_p,
+      compra_i_p: compra_i_p,
+      compra_h_p: compra_h_p,
+      actividad_p: actividad_p,
+      trabajador_p: trabajador_p,
+      asiganar_p: asiganar_p,
+      cinta_p: cinta_p,
+      lote_p: lote_p,
+      produccion_p: produccion_p,
+      encinte_p: encinte_p,
+      fruta_p: fruta_p,
+      proceso_c_p: proceso_c_p,
+      data_c_p: data_c_p,
+      proceso_e_p: proceso_e_p,
+      data_f_p: data_f_p,
+      proceso_r_p: proceso_r_p,
+      data_r_p: data_r_p,
+      proceso_p_p: proceso_p_p,
+      data_p_p: data_p_p,
+      prediccion_c_p: prediccion_c_p,
+      prediccion_e_p: prediccion_e_p,
+      prediccion_r_p: prediccion_r_p,
+      prediccion_p_p: prediccion_p_p,
+      informe_p: informe_p,
+    },
+  }).done(function (response) {
+    if (response > 0) {
+      if (response == 1) {
+        alerta = ["exito", "success", "El rol se registro con exito"];
+        cerrar_loader_datos(alerta);
+        $("#nombre_rol").val("");
+      }
+    } else {
+      alerta = [
+        "error",
+        "error",
+        "No se pudo crear los permisos del usuario - FALLO EN LA MATRIX:(",
       ];
       cerrar_loader_datos(alerta);
     }
@@ -1030,7 +1364,6 @@ $("#tabla_usuario").on("click", ".editar", function () {
 });
 
 function editar_usuario() {
-
   var id = $("#id_usuario").val();
   var nombres = $("#nombres").val();
   var apellidos = $("#apellidos").val();
@@ -1051,7 +1384,7 @@ function editar_usuario() {
     tipo_rol.length == 0 ||
     tipo_rol == 0 ||
     usuario.length == 0 ||
-    usuario.trim() == "" 
+    usuario.trim() == ""
   ) {
     validar_registros_edit(
       nombres,
@@ -1099,22 +1432,15 @@ function editar_usuario() {
       correo: correo,
       cedula: cedula,
       tipo_rol: tipo_rol,
-      usuario: usuario
+      usuario: usuario,
     },
   }).done(function (resp) {
-
     if (resp > 0) {
       if (resp == 1) {
-        
-        alerta = [
-          "exito",
-          "success",
-          "El usuario se edito con exito",
-        ];
+        alerta = ["exito", "success", "El usuario se edito con exito"];
         cerrar_loader_datos(alerta);
         $("#modal_editar_usuario").modal("hide");
         tabla_usuario.ajax.reload();
-        
       } else if (resp == 2) {
         alerta = [
           "existe",
@@ -1141,7 +1467,6 @@ function editar_usuario() {
       alerta = ["error", "error", "Error al registrar el usuario"];
       cerrar_loader_datos(alerta);
     }
-
   });
 }
 

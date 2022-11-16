@@ -8,7 +8,7 @@
                     <i class="fa fa-list"> </i>
                 </div>
                 <div>
-                    Listado de usuario
+                    Listado de usuario - <a style="color: white;" href="../usuario/create.php" class="btn btn-success "><i class="fa fa-user-plus"></i> Crear usuario</a> - <a style="color: white;" href="../usuario/lista_rol.php" class="btn btn-primary "><i class="fa fa-bookmark"></i> Roles</a>
                     <div class="page-title-subheading">
                         Lista de usuarios disponibles
                     </div>

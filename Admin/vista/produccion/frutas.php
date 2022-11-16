@@ -62,7 +62,7 @@ $fecha = date("Y-m-d");
                     <button onclick="guardr_racimos();" class="btn btn-primary" type="submit">
                         <i class="fa fa-save"></i> Registrar
                     </button> -
-                    <a href="../produccion/produccion.php" class="btn btn-danger">Volver</a>
+                    <a href="../produccion/list_frutas.php" class="btn btn-danger">Volver</a>
                 </div>
             </div>
 

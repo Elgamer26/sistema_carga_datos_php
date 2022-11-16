@@ -244,25 +244,27 @@ $data_web = mysqli_fetch_assoc($resulta_user);
                         <div class="app-sidebar__inner">
                             <ul class="vertical-nav-menu">
                                 <li class="app-sidebar__heading">Módulo de seguridad</li>
-                                <li>
+                                <!-- <li>
                                     <a href="../usuario/lista_rol.php">
                                         <i class="metismenu-icon fa fa-bookmark"></i>
                                         Roles
                                     </a>
-                                </li>
-                                <li>
+                                </li> -->
+                                <!-- <li>
                                     <a href="../usuario/create.php">
                                         <i class="metismenu-icon fa fa-user-plus"></i>
                                         Usuarios
                                     </a>
-                                </li>
-                                <li>
+                                </li> -->
+
+                                <li id="usuario_p_">
                                     <a href="../usuario/listado.php">
-                                        <i class="metismenu-icon fa fa-list"></i>
-                                        Listado usuarios
+                                        <i class="metismenu-icon fa fa-users"></i>
+                                        Usuarios
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="empresa_p_">
                                     <a href="../home/empresa.php">
                                         <i class="metismenu-icon fa fa-home"></i>
                                         Empresa
@@ -270,43 +272,49 @@ $data_web = mysqli_fetch_assoc($resulta_user);
                                 </li>
 
                                 <li class="app-sidebar__heading">Módulo de inventario</li>
-                                <li>
+                                <!-- <li>
                                     <a href="../inventario/list_tipoi.php">
                                         <i class="metismenu-icon fa fa-bookmark"></i>
                                         Tipo insumo
                                     </a>
-                                </li>
-                                <li>
+                                </li> -->
+
+                                <li id="insumo_p_">
                                     <a href="../inventario/list_insumo.php">
                                         <i class="metismenu-icon fa fa-cube"></i>
                                         Insumos
                                     </a>
                                 </li>
-                                <li>
+
+                                <!-- <li>
                                     <a href="../inventario/list_tipoe.php">
                                         <i class="metismenu-icon fa fa-bookmark"></i>
                                         Tipo herramienta
                                     </a>
-                                </li>
-                                <li>
+                                </li> -->
+
+                                <li id="herramienta_p_">
                                     <a href="../inventario/list_herramienta.php">
                                         <i class="metismenu-icon fa fa-wrench"></i>
                                         Herramienta
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="proveedor_p_">
                                     <a href="../inventario/list_proveedor.php">
                                         <i class="metismenu-icon fa fa-user"></i>
                                         Proveedor
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="compra_i_p_">
                                     <a href="../inventario/list_comprai.php">
                                         <i class="metismenu-icon fa fa-shopping-cart"></i>
                                         Compras insumos
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="compra_h_p_">
                                     <a href="../inventario/list_comprah.php">
                                         <i class="metismenu-icon fa fa-shopping-cart"></i>
                                         Compras herramientas
@@ -314,152 +322,188 @@ $data_web = mysqli_fetch_assoc($resulta_user);
                                 </li>
 
                                 <li class="app-sidebar__heading">Módulo Control de la producción</li>
-                                <li>
+                                <li id="actividad_p_">
                                     <a href="../produccion/actividades.php">
                                         <i class="metismenu-icon fa fa-bookmark"></i>
                                         Actividades
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="trabajador_p_">
                                     <a href="../produccion/trabajadores.php">
                                         <i class="metismenu-icon fa fa-users"></i>
                                         Trabajadores
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="asiganar_p_">
                                     <a href="../produccion/asignar_actividad.php">
                                         <i class="metismenu-icon fa fa-hammer"></i>
                                         Asignar actividades
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="cinta_p_">
                                     <a href="../produccion/tipo_cinta.php">
                                         <i class="metismenu-icon fa fa-bookmark"></i>
-                                        Tipo de cintas
+                                        Cintas
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="lote_p_">
                                     <a href="../produccion/lotes.php">
                                         <i class="metismenu-icon fa fa-cubes"></i>
                                         Lotes
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="produccion_p_">
                                     <a href="../produccion/produccion.php">
                                         <i class="metismenu-icon fa fa-cube"></i>
                                         Producción
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="encinte_p_">
                                     <a href="../produccion/encinte.php">
                                         <i class="metismenu-icon fa fa-tags"></i>
                                         Encinte
                                     </a>
                                 </li>
-                                <li>
+
+                                <!-- <li>
                                     <a href="../produccion/frutas.php">
                                         <i class="metismenu-icon fa fa-box"></i>
                                         Registro de fruta
                                     </a>
-                                </li>
-                                <li>
+                                </li> -->
+
+                                <li id="fruta_p_">
                                     <a href="../produccion/list_frutas.php">
                                         <i class="metismenu-icon fa fa-list"></i>
-                                        Listado de fruta
+                                        Fruta
                                     </a>
                                 </li>
 
                                 <li class="app-sidebar__heading">Manejo de datos</li>
-                                <li>
+                                <li id="proceso_c_p_">
                                     <a href="../manejo_datos/proceso_cajas.php">
                                         <i class="metismenu-icon fa fa-cubes"></i>
                                         Proceso de cajas
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="data_c_p_">
                                     <a href="../manejo_datos/data_cajas.php">
                                         <i class="metismenu-icon fa fa-file-excel"></i>
                                         Data Excel cajas
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="proceso_e_p_">
                                     <a href="../manejo_datos/proceso_enfunde.php">
                                         <i class="metismenu-icon fa fa-cubes"></i>
                                         Proceso de enfunde
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="data_f_p_">
                                     <a href="../manejo_datos/data_fundas.php">
                                         <i class="metismenu-icon fa fa-file-excel"></i>
                                         Data Excel fundas
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="proceso_r_p_">
                                     <a href="../manejo_datos/proceso_recobro.php">
                                         <i class="metismenu-icon fa fa-cubes"></i>
                                         Proceso de recobro
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="data_r_p_">
                                     <a href="../manejo_datos/data_recobro.php">
                                         <i class="metismenu-icon fa fa-file-excel"></i>
                                         Data Excel recobro
                                     </a>
                                 </li>
 
+                                <li id="proceso_p_p_">
+                                    <a href="../manejo_datos/proceso_recobro.php">
+                                        <i class="metismenu-icon fa fa-cubes"></i>
+                                        Proceso de produccion
+                                    </a>
+                                </li>
+
+                                <li id="data_p_p_">
+                                    <a href="../manejo_datos/data_recobro.php">
+                                        <i class="metismenu-icon fa fa-file-excel"></i>
+                                        Data Excel produccion
+                                    </a>
+                                </li>
+
                                 <li class="app-sidebar__heading">Dashboard</li>
-                                <li>
+                                <li id="prediccion_c_p_">
                                     <a href="../manejo_datos/prediccion_cajas.php">
                                         <i class="metismenu-icon fas fa-chart-area"></i>
                                         Predicción de cajas
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="prediccion_e_p_">
                                     <a href="../manejo_datos/prediccion_enfunde.php">
                                         <i class="metismenu-icon fas fa-chart-area"></i>
                                         Predicción de enfunde
                                     </a>
                                 </li>
-                                <li>
+
+                                <li id="prediccion_r_p_">
                                     <a href="../manejo_datos/prediccion_recobro.php">
                                         <i class="metismenu-icon fas fa-chart-area"></i>
                                         Predicción recobro de cintas
                                     </a>
                                 </li>
 
+                                <li id="prediccion_p_p_">
+                                    <a href="../manejo_datos/prediccion_recobro.php">
+                                        <i class="metismenu-icon fas fa-chart-area"></i>
+                                        Predicción de produccion
+                                    </a>
+                                </li>
 
-                                <li class="app-sidebar__heading">Informes</li>
-                                <li>
+
+                                <li class="informe_p_ app-sidebar__heading">Informes</li>
+                                <li class="informe_p_">
                                     <a href="../informe/informe_materiales.php">
                                         <i class="metismenu-icon fa fa-file"></i>
                                         Informe de materiales
                                     </a>
                                 </li>
-                                <li>
+                                <li class="informe_p_">
                                     <a href="../informe/informe_insumos.php">
                                         <i class="metismenu-icon fa fa-file"></i>
                                         Informe de insumos
                                     </a>
                                 </li>
-                                <li>
+                                <li class="informe_p_">
                                     <a href="../informe/informe_actividades.php">
                                         <i class="metismenu-icon fa fa-file"></i>
                                         Informe de actividades
                                     </a>
                                 </li>
-                                <li>
+                                <li class="informe_p_">
                                     <a href="../informe/informe_cajas.php">
                                         <i class="metismenu-icon fa fa-file"></i>
                                         Informe cajas de banano
                                     </a>
                                 </li>
-                                <li>
+                                <li class="informe_p_">
                                     <a href="../informe/informe_encinte.php">
                                         <i class="metismenu-icon fa fa-file"></i>
                                         Informe de encinte
                                     </a>
                                 </li>
-                                <li>
+                                <li class="informe_p_">
                                 <a href="../informe/informe_producto_usados.php">
                                         <i class="metismenu-icon fa fa-file"></i>
                                          Producto utilizado en actividades

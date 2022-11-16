@@ -9,6 +9,7 @@
                 </div>
                 <div>
                     Listado de herramienta - <a style="color: white;" href="../inventario/crear_herramienta.php" class="btn btn-primary "><i class="fa fa-plus"></i> Nuevo registro</a>
+                    - <a style="color: white;"  href="../inventario/list_tipoe.php" class="btn btn-danger "><i class="fa fa-bookmark"></i> Tipo de herramienta</a>
                     <div class="page-title-subheading">
                         Lista de herramientas disponibles
                     </div>

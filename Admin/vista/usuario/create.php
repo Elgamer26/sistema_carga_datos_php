@@ -8,7 +8,7 @@
                     <i class="fa fa-user-plus"> </i>
                 </div>
                 <div>
-                    Nuevo usuario
+                    Nuevo usuario 
                     <div class="page-title-subheading">
                         Crear un nuevo usuario.
                     </div>
@@ -88,7 +88,7 @@
                     <button onclick="registra_usuario();" class="btn btn-primary">
                         <i class="fa fa-save"></i> Registrar
                     </button> -
-                    <a href="../usuario/create.php" class="btn btn-danger">Limpiar</a>
+                    <a href="../usuario/listado.php" class="btn btn-danger">Volver</a>
                 </div>
             </div>
 
@@ -102,7 +102,7 @@
 <script>
     listar_rol_usu();
     var pass_usus = false;
-    var correo_usus = false;  
+    var correo_usus = false;
     $(".tipo_rol").select2();
 
     function mostrar_usu() {
@@ -239,17 +239,17 @@
                     //estilos para cambiar de color y ocultar el boton
                     $(this).css("border", "1px solid green");
                     $("#email_correcto").html("");
-                    correo_usus = true; 
+                    correo_usus = true;
                 } else {
                     $(this).css("border", "1px solid red");
                     $("#email_correcto").html("Email incorrecto");
-                    correo_usus = false; 
+                    correo_usus = false;
                 }
             });
         } else {
             $(this).css("border", "1px solid green");
             $("#email_correcto").html("");
-            correo_usus = false; 
+            correo_usus = false;
         }
     });
 </script>
