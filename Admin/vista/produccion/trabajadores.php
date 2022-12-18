@@ -151,4 +151,26 @@
             $("#numero_docu").focus();
         }
     });
+
+    $("#correo_empleado").keyup(function() {
+        if (this.value != "") {
+            document.getElementById('correo_empleado').addEventListener('input', function() {
+                campo = event.target;
+                //este codigo me da formato email
+                email = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+                //esto es para validar si es un email valida
+                if (email.test(campo.value)) {
+                    //estilos para cambiar de color y ocultar el boton
+                    $(this).css("border", "1px solid green");
+                    $("#email_correcto").html("");
+                } else {
+                    $(this).css("border", "1px solid red");
+                    $("#email_correcto").html("Email incorrecto");
+                }
+            });
+        } else {
+            $(this).css("border", "1px solid green");
+            $("#email_correcto").html("");
+        }
+    });
 </script>

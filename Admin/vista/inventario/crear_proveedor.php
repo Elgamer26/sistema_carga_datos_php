@@ -31,7 +31,7 @@
 
                 <div class="col-md-4 mb-3">
                     <label for="razon_social">Razon social</label> <b><label style="color: red;" id="razon_social_obligg"></label></b>
-                    <input type="text" maxlength="50" class="form-control" id="razon_social" placeholder="Ingrese razon social" />
+                    <input type="text" maxlength="100" class="form-control" id="razon_social" placeholder="Ingrese razon social" />
                 </div>
 
                 <div class="col-md-4 mb-3">
@@ -46,18 +46,18 @@
 
                 <div class="col-md-6 mb-3">
                     <label for="direccion">Direcciónn</label> <b><label style="color: red;" id="direccion_obligg"></label></b>
-                    <input type="text" maxlength="50" class="form-control" id="direccion" placeholder="Ingrese la dirección" />
+                    <input type="text" maxlength="100" class="form-control" id="direccion" placeholder="Ingrese la dirección" />
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label for="correo">Correo</label> <b><label style="color: red;" id="correo_obligg"></label></b>
-                    <input type="text" maxlength="50" class="form-control" id="correo" placeholder="Ingrese correo" />
+                    <input type="text" maxlength="100" class="form-control" id="correo" placeholder="Ingrese correo" />
                     <label for="" id="email_correcto" style="color: red;"></label>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label for="encargado">Encargado</label> <b><label style="color: red;" id="encargado_obligg"></label></b>
-                    <input type="text" maxlength="50" class="form-control" id="encargado" placeholder="Ingrese encargado" onkeypress="return soloLetras(event)" />
+                    <input type="text" maxlength="100" class="form-control" id="encargado" placeholder="Ingrese encargado" onkeypress="return soloLetras(event)" />
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -106,6 +106,19 @@
             $(this).css("border", "1px solid green");
             $("#email_correcto").html("");
             correo_proveedor = false;
+        }
+    });
+
+    $("#ruc").validarCedulaEC({
+        onValid: function() {
+            $("#ruc_obligg").html("");
+            alertify.success('Ruc correcto');
+        },
+        onInvalid: function() {
+            $("#ruc_obligg").html("Ruc incorrecto")
+            alertify.error('Ruc incorrecto');
+            $("#ruc").val("");
+            $("#ruc").focus();
         }
     });
 </script>

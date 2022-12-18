@@ -45,6 +45,7 @@ $data_web = mysqli_fetch_assoc($resulta_user);
     <link rel="stylesheet" href="../../plugins/modales/bootstrap4/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../plugins/modales/jqueryUI/jquery-ui-1.12.1/jquery-ui.min.css">
 
+    <link href="../../plugins/flatpickr/flatpickr.min.css" rel="stylesheet" />
     <link href="../../plugins/DATATABLES/datatables.min.css" rel="stylesheet" />
     <link href="../../plugins/SELECT2/css/select2.min.css" rel="stylesheet" />
     <link href="../../template/main.css" rel="stylesheet" />
@@ -89,7 +90,7 @@ $data_web = mysqli_fetch_assoc($resulta_user);
     }
 
     #global {
-        height: 557px;
+        /*  height: 560px;*/
         overflow-y: scroll;
         border-radius: 20px;
         border: 3px solid orange;
@@ -392,51 +393,44 @@ $data_web = mysqli_fetch_assoc($resulta_user);
                                         Proceso de cajas
                                     </a>
                                 </li>
-
                                 <li id="data_c_p_">
                                     <a href="../manejo_datos/data_cajas.php">
                                         <i class="metismenu-icon fa fa-file-excel"></i>
                                         Data Excel cajas
                                     </a>
                                 </li>
-
                                 <li id="proceso_e_p_">
                                     <a href="../manejo_datos/proceso_enfunde.php">
                                         <i class="metismenu-icon fa fa-cubes"></i>
                                         Proceso de enfunde
                                     </a>
                                 </li>
-
                                 <li id="data_f_p_">
                                     <a href="../manejo_datos/data_fundas.php">
                                         <i class="metismenu-icon fa fa-file-excel"></i>
                                         Data Excel fundas
                                     </a>
                                 </li>
-
                                 <li id="proceso_r_p_">
                                     <a href="../manejo_datos/proceso_recobro.php">
                                         <i class="metismenu-icon fa fa-cubes"></i>
                                         Proceso de recobro
                                     </a>
                                 </li>
-
                                 <li id="data_r_p_">
                                     <a href="../manejo_datos/data_recobro.php">
                                         <i class="metismenu-icon fa fa-file-excel"></i>
                                         Data Excel recobro
                                     </a>
                                 </li>
-
                                 <li id="proceso_p_p_">
-                                    <a href="../manejo_datos/proceso_recobro.php">
+                                    <a href="../manejo_datos/proceso_produccion.php">
                                         <i class="metismenu-icon fa fa-cubes"></i>
                                         Proceso de produccion
                                     </a>
                                 </li>
-
                                 <li id="data_p_p_">
-                                    <a href="../manejo_datos/data_recobro.php">
+                                    <a href="../manejo_datos/data_produccion.php">
                                         <i class="metismenu-icon fa fa-file-excel"></i>
                                         Data Excel produccion
                                     </a>
@@ -444,33 +438,36 @@ $data_web = mysqli_fetch_assoc($resulta_user);
 
                                 <li class="app-sidebar__heading">Dashboard</li>
                                 <li id="prediccion_c_p_">
-                                    <a href="../manejo_datos/prediccion_cajas.php">
+                                    <!-- <a href="../manejo_datos/prediccion_cajas.php">  
+                                  <a href="../manejo_datos/manejo_caja.php">--->
+                                    <a href="../manejo_datos/predecir_cajas.php">
                                         <i class="metismenu-icon fas fa-chart-area"></i>
                                         Predicción de cajas
                                     </a>
                                 </li>
 
                                 <li id="prediccion_e_p_">
-                                    <a href="../manejo_datos/prediccion_enfunde.php">
+                                <!-- <a href="../manejo_datos/prediccion_enfunde.php"> -->
+                                    <a href="../manejo_datos/predecir_enfunde.php">
                                         <i class="metismenu-icon fas fa-chart-area"></i>
                                         Predicción de enfunde
                                     </a>
                                 </li>
 
                                 <li id="prediccion_r_p_">
-                                    <a href="../manejo_datos/prediccion_recobro.php">
+                                    <!-- <a href="../manejo_datos/prediccion_recobro.php"> -->
+                                    <a href="../manejo_datos/predecir_recobro.php">
                                         <i class="metismenu-icon fas fa-chart-area"></i>
                                         Predicción recobro de cintas
                                     </a>
                                 </li>
 
                                 <li id="prediccion_p_p_">
-                                    <a href="../manejo_datos/prediccion_recobro.php">
+                                <a href="../manejo_datos/predecir_produccion.php">
                                         <i class="metismenu-icon fas fa-chart-area"></i>
                                         Predicción de produccion
                                     </a>
                                 </li>
-
 
                                 <li class="informe_p_ app-sidebar__heading">Informes</li>
                                 <li class="informe_p_">
@@ -504,9 +501,9 @@ $data_web = mysqli_fetch_assoc($resulta_user);
                                     </a>
                                 </li>
                                 <li class="informe_p_">
-                                <a href="../informe/informe_producto_usados.php">
+                                    <a href="../informe/informe_producto_usados.php">
                                         <i class="metismenu-icon fa fa-file"></i>
-                                         Producto utilizado en actividades
+                                        Producto utilizado en actividades
                                     </a>
                                 </li>
                             </ul>

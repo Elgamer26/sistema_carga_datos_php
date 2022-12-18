@@ -462,7 +462,6 @@ function cargar_excel_recobro_() {
   });
 }
 
-
 function eliminar_archivo_excel_recargo(id, imagen) {
   Swal.fire({
     title: "Eliminar el archivo excel recargo?",
@@ -475,6 +474,175 @@ function eliminar_archivo_excel_recargo(id, imagen) {
   }).then((result) => {
     if (result.isConfirmed) {
       funcion = "eliminar_archivo_excel_recargo";
+      alerta = [
+        "datos",
+        "Se está eliminado el archivo",
+        "Eliminado archivo...",
+      ];
+      mostar_loader_datos(alerta);
+      $.ajax({
+        type: "POST",
+        url: "../../controlador/prediccion/prediccion.php",
+        data: { id: id, imagen: imagen, funcion: funcion },
+        success: function (response) {
+          if (response == 1) {
+            Swal.fire({
+              title: "Archivo eliminado!!",
+              text: "El archivo se elimino con exito",
+              icon: "success",
+              showCancelButton: false,
+              showConfirmButton: true,
+              allowOutsideClick: false,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "OK",
+            }).then((result) => {
+              if (result.value) {
+                location.reload();
+              } else {
+                location.reload();
+              }
+            });
+          } else {
+            alerta = ["error", "error", "Error al eliminar el archivo"];
+            cerrar_loader_datos(alerta);
+          }
+        },
+      });
+    }
+  });
+}
+
+////////////////////// para el arhivo produccion
+function subir_excel_produccion() {
+  Swal.fire({
+    title: "Guardar el archivo excel?",
+    text: "El excel se cargara al sistema!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si, subir!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      cargar_excel_sistema_produccion();
+    }
+  });
+}
+
+function cargar_excel_sistema_produccion() {
+  var foto = $("#foto").val();
+  var nombrearchivo = $("#nombre_ar").val();
+
+  if (foto == "" || foto.length == 0 || foto == "") {
+    return swal.fire(
+      "Mensaje de advertencia",
+      "Ingrese un archio excel",
+      "warning"
+    );
+  }
+
+  if (nombrearchivo == "" || nombrearchivo.length == 0 || nombrearchivo == "") {
+    $("#nombre_oblliig").html(" - Ingrse nombre del archivo");
+    return swal.fire(
+      "Mensaje de alerta",
+      "Ingrese todo los datos, no debe quedar ningun dato vacio",
+      "warning"
+    );
+  } else {
+    $("#nombre_oblliig").html("");
+  }
+
+  var formdata = new FormData();
+  var foto = $("#foto")[0].files[0];
+  //est valores son como los que van en la data del ajax
+
+  alerta = ["datos", "Se está cargando el archivo", "Cargando archivo..."];
+  mostar_loader_datos(alerta);
+
+  funcion = "cargar_excel_produccion";
+  formdata.append("funcion", funcion);
+
+  formdata.append("foto", foto);
+  formdata.append("nombrearchivo", nombrearchivo);
+
+  $.ajax({
+    url: "../../controlador/prediccion/prediccion.php",
+    type: "POST",
+    //aqui envio toda la formdata
+    data: formdata,
+    contentType: false,
+    processData: false,
+    success: function (resp) {
+      if (resp > 0) {
+        if (resp == 2) {
+          alerta = [
+            "existe",
+            "warning",
+            "El nombre del archivo " + nombrearchivo + ", ya esta registrado",
+          ];
+          cerrar_loader_datos(alerta);
+        } else if (resp == 1) {
+          cargar_excel_produccion_();
+          $("#foto").val("");
+          $("#nombre_ar").val("");
+          alerta = [
+            "exito",
+            "success",
+            "Archivo cargado correctamento al sistema",
+          ];
+          cerrar_loader_datos(alerta);
+        }
+      } else {
+        alerta = ["error", "error", "Error al cargar el archivo"];
+        cerrar_loader_datos(alerta);
+      }
+    },
+  });
+  return false;
+}
+
+function cargar_excel_produccion_() {
+  funcion = "cargar_excel_produccion_";
+  $.ajax({
+    type: "POST",
+    url: "../../controlador/prediccion/prediccion.php",
+    data: { funcion: funcion },
+    success: function (response) {
+      if (response != 0) {
+        var data = JSON.parse(response);
+        var element = "";
+        data.forEach((row) => {
+          nombre = row[1].split("/", 3);
+          fin = nombre[2].split(".");
+          element += `<div class="col-md-4">
+                        <label>Archivo Excel</label>
+                        <a href="../../${row[1]}" download="${fin[0]}.xlsx">
+                           <img height="150" width="150" class="border rounded mx-auto d-block img-fluid" src="../../img/carga/excel.png" />
+                        </a>
+                        <label> <b> Nombre: </b> ${fin[0]} </label><br>
+                        <label> <b> Fecha carga: ${row[2]} </b> </label><br>
+                        <button onclick="eliminar_archivo_excel_produccion('${row[0]}', '${fin[0]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </div>`;
+        });
+        $("#unir_exel_produccion").html(element);
+      }
+    },
+  });
+}
+
+function eliminar_archivo_excel_produccion(id, imagen) {
+  Swal.fire({
+    title: "Eliminar el archivo excel recargo?",
+    text: "El excel se eliminará del sistema!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si, eliminar!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      funcion = "eliminar_archivo_excel_produccion";
       alerta = [
         "datos",
         "Se está eliminado el archivo",

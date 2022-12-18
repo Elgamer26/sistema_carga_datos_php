@@ -90,10 +90,10 @@
 
                     <div class="col-sm-3 form-group">
                         <label>Costo de la actividad</label> &nbsp;&nbsp; <label style="color:red;" id="costo_obliga"></label>
-                        <input type="number" class="form-control" id="costo_acivdad">
+                        <input type="text" onkeypress="return filterfloat(event, this);" class="form-control" id="costo_acivdad">
                     </div>
 
-                    <div class="col-sm-3 form-group">
+                    <div class="col-sm-3 form-group" style="display: none;">
                         <label>Fecha</label> &nbsp;&nbsp; <label style="color:red;" id="fecha_obliga"></label>
                         <input type="date" class="form-control" id="fecha_asiga">
                     </div>

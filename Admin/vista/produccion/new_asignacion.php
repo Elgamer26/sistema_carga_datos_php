@@ -48,12 +48,12 @@ $fecha = date("Y-m-d");
 
                 <div class="col-sm-3 form-group">
                     <label>Costo de la actividad</label> &nbsp;&nbsp; <label style="color:red;" id="costo_obliga"></label>
-                    <input type="number" class="form-control" id="costo_acivdad">
+                    <input type="text" onkeypress="return filterfloat(event, this);" class="form-control" id="costo_acivdad">
                 </div>
 
                 <div class="col-sm-3 form-group">
-                    <label>Fecha</label> &nbsp;&nbsp; <label style="color:red;" id="fecha_obliga"></label>
-                    <input type="date" class="form-control" id="fecha_asiga" value="<?php echo $fecha; ?>">
+                    <label>Fecha asignación</label> &nbsp;&nbsp; <label style="color:red;" id="fecha_obliga"></label>
+                    <input type="date" class="form-control calendario" id="fecha_asiga" value="<?php echo $fecha; ?>">
                 </div>
 
                 <div class="col-md-12 p-1">
@@ -73,6 +73,8 @@ $fecha = date("Y-m-d");
 <script src="../../js/produccion.js"></script>
 
 <script>
+    mostar_fecha(fecha_atras, fecha_adelante);
+
     $(".tipo_aaaa").select2();
     $(".tipo_a").select2();
     listar_actividad_combo();

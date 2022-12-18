@@ -713,6 +713,9 @@ $("#tabla_trabajador").on("click", ".editar", function () {
   $("#telefono_obliga").html("");
   $("#correo_obliga").html("");
 
+  $("#correo_empleado").css("border", "1px solid green");
+  $("#email_correcto").html("");
+
   $("#modal_editar_trabajador").modal({ backdrop: "static", keyboard: false });
   $("#modal_editar_trabajador").modal("show");
 });

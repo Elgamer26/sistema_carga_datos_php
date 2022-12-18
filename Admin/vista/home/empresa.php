@@ -42,7 +42,7 @@
 
                 <div class="col-md-6 mb-3">
                     <label for="nombre">Nombre empresa</label> <b><label style="color: red;" id="nombre_obligg"></label></b>
-                    <input type="text" maxlength="50" onkeypress="return soloLetras(event)" class="form-control" id="nombre" placeholder="Ingrese nombre de la empresa" />
+                    <input type="text" maxlength="100" onkeypress="return soloLetras(event)" class="form-control" id="nombre" placeholder="Ingrese nombre de la empresa" />
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -57,7 +57,7 @@
 
                 <div class="col-md-6 mb-3">
                     <label for="telefono">Telefono</label> <b><label style="color: red;" id="telefono_obligg"></label></b>
-                    <input type="text" maxlength="10" onkeypress="return soloNumeros(event)" class="form-control" id="telefono" placeholder="Ingrese telefono de la empresa" />
+                    <input type="text" maxlength="12" onkeypress="return soloNumeros(event)" class="form-control" id="telefono" placeholder="Ingrese telefono de la empresa" />
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -73,18 +73,22 @@
 
                 <div class="col-md-6 mb-3">
                     <label for="encargado">Encargado</label> <b><label style="color: red;" id="encargado_obligg"></label></b>
-                    <input type="text" maxlength="50" onkeypress="return soloLetras(event)" class="form-control" id="encargado" placeholder="Ingrese encargado de la empresa" />
+                    <input type="text" maxlength="80" onkeypress="return soloLetras(event)" class="form-control" id="encargado" placeholder="Ingrese encargado de la empresa" />
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label for="telefono_encargado">Telefono encargado</label> <b><label style="color: red;" id="telefono_encargado_obligg"></label></b>
-                    <input type="text" maxlength="10" onkeypress="return soloNumeros(event)" class="form-control" id="telefono_encargado" placeholder="Ingrese telefono encargado de la empresa" />
+                    <input type="text" maxlength="13" onkeypress="return soloNumeros(event)" class="form-control" id="telefono_encargado" placeholder="Ingrese telefono encargado de la empresa" />
                 </div>
 
                 <div class="col-md-12 p-3">
                     <button onclick="editra_datos_empresa();" class="btn btn-primary">
                         <i class="fa fa-edit"></i> Editar
                     </button>
+-
+                    <a onClick="window.location.reload();" class="btn btn-danger" style="color: white;">
+                          Recargra
+                    </a>
                 </div>
             </div>
 
@@ -135,6 +139,19 @@
             $(this).css("border", "1px solid green");
             $("#email_correcto").html("");
             correo_home = false;
+        }
+    });
+
+    $("#ruc").validarCedulaEC({
+        onValid: function() {
+            $("#ruc_obligg").html("");
+            alertify.success('Ruc correcto');
+        },
+        onInvalid: function() {
+            $("#ruc_obligg").html("Ruc incorrecto")
+            alertify.error('Ruc incorrecto');
+            $("#ruc").val("");
+            $("#ruc").focus();
         }
     });
 </script>

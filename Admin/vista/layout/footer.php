@@ -28,6 +28,7 @@
 
 <script src="../../plugins/DATATABLES/datatables.min.js"></script>
 <script src="../../plugins/js/sweetalert2/sweetalert2.all.min.js"></script>
+<script src="../../plugins/flatpickr/flatpickr.js"></script>
 
 <script src="../../plugins/SELECT2/js/select2.min.js"></script>
 <!-- <script src="../../plugins/Chart/chart.min.js"></script> -->
@@ -166,10 +167,30 @@
 </div>
 
 <script>
+    //// para controlar las fecha de dias depues y dias antes
+    var fecha_atras;
+    var fecha_adelante;
+    var fecha_mass;
+
+    fecha = new Date();
+    fecha2 = new Date();
+    fecha3 = new Date();
+    dia = fecha.getDate();
+    mes = fecha.getMonth() + 1; // +1 porque los meses empiezan en 0
+    anio = fecha.getFullYear();
+    fecha2.setDate(fecha2.getDate() + 10);
+    fecha3.setDate(fecha2.getDate() + 160);
+
+    fecha_atras = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + (fecha.getDate() - 2);
+    fecha_adelante = fecha2.getFullYear() + "-" + (fecha2.getMonth() + 1) + "-" + fecha2.getDate();
+    fecha_mass = fecha3.getFullYear() + "-" + (fecha3.getMonth() + 1) + "-" + fecha3.getDate();
+
+    
+    ///////////////
+    //////////////
     var correo_usus_lo = true;
     datos_usuario_logeado();
     obtener_permisos_usuario();
-    
 
     //////
     /// par los graficos
@@ -331,8 +352,6 @@
         }).done(function(response) {
             var data = JSON.parse(response);
 
-            console.log(data);
-
             data[0][2].toString() == "true" ?
                 ($("#usuario_p_").show()) :
                 ($("#usuario_p_").hide());
@@ -445,6 +464,151 @@
                 ($(".informe_p_").show()) :
                 ($(".informe_p_").hide());
 
+        });
+    }
+
+    ////
+    //funcion para validar decimales
+    function filterfloat(evt, input) {
+        var key = window.Event ? evt.which : evt.keyCode;
+        var chark = String.fromCharCode(key);
+        var tempvalue = input.value + chark;
+        if (key >= 48 && key <= 57) {
+            if (filter(tempvalue) === false) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            if (key == 8 || key == 13 || key == 0) {
+                return false;
+            } else if (key === 46) {
+                if (filter(tempvalue) === false) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return swal.fire(
+                    "No se permiten letras!!",
+                    "Solo se permiten numeros decimales, (00.00)",
+                    "warning"
+                );
+            }
+        }
+    }
+
+    function filter(__val__) {
+        var preg = /^([0-9]+\.?[0-9]{0,2})$/;
+        if (preg.test(__val__) === true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /// para validar las fechas
+    function mostar_fecha(fecha_i, fecha_f) {
+        $(".calendario").flatpickr({
+            minDate: fecha_i,
+            maxDate: fecha_f,
+            locale: {
+                firstDayOfWeek: 1,
+                weekdays: {
+                    shorthand: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                    longhand: [
+                        "Domingo",
+                        "Lunes",
+                        "Martes",
+                        "Miércoles",
+                        "Jueves",
+                        "Viernes",
+                        "Sábado",
+                    ],
+                },
+                months: {
+                    shorthand: [
+                        "Ene",
+                        "Feb",
+                        "Mar",
+                        "Abr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Ago",
+                        "Sep",
+                        "Оct",
+                        "Nov",
+                        "Dic",
+                    ],
+                    longhand: [
+                        "Enero",
+                        "Febreo",
+                        "Мarzo",
+                        "Abril",
+                        "Mayo",
+                        "Junio",
+                        "Julio",
+                        "Agosto",
+                        "Septiembre",
+                        "Octubre",
+                        "Noviembre",
+                        "Diciembre",
+                    ],
+                },
+            },
+        });
+    }
+
+    function mostar_fechamas(fecha_i, fecha_f) {
+        $(".calendariomas").flatpickr({
+            minDate: fecha_i,
+            maxDate: fecha_f,
+            locale: {
+                firstDayOfWeek: 1,
+                weekdays: {
+                    shorthand: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                    longhand: [
+                        "Domingo",
+                        "Lunes",
+                        "Martes",
+                        "Miércoles",
+                        "Jueves",
+                        "Viernes",
+                        "Sábado",
+                    ],
+                },
+                months: {
+                    shorthand: [
+                        "Ene",
+                        "Feb",
+                        "Mar",
+                        "Abr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Ago",
+                        "Sep",
+                        "Оct",
+                        "Nov",
+                        "Dic",
+                    ],
+                    longhand: [
+                        "Enero",
+                        "Febreo",
+                        "Мarzo",
+                        "Abril",
+                        "Mayo",
+                        "Junio",
+                        "Julio",
+                        "Agosto",
+                        "Septiembre",
+                        "Octubre",
+                        "Noviembre",
+                        "Diciembre",
+                    ],
+                },
+            },
         });
     }
 </script>

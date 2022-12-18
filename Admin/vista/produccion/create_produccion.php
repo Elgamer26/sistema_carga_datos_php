@@ -69,12 +69,12 @@
 
                 <div class="col-md-3 mx-auto">
                     <label for="fecha_i">Fecha inicio</label> <b><label style="color: red;" id="fecha_i_obligg"></label></b>
-                    <input type="date" class="form-control" id="fecha_i" />
+                    <input type="date" class="form-control calendario" id="fecha_i" />
                 </div>
 
                 <div class="col-md-3 mx-auto">
                     <label for="fecha_f">Fecha fin</label> <b><label style="color: red;" id="fecha_f_obligg"></label></b>
-                    <input type="date" class="form-control" id="fecha_f" /><br>
+                    <input type="date" class="form-control calendariomas" id="fecha_f" /><br>
                 </div>
 
                 <hr>
@@ -90,7 +90,7 @@
                         </div>
 
                         <div class="ibox-body">
-                            
+
                             <ul class="nav nav-pills">
                                 <li class="nav-item">
                                     <a class="nav-link active" href="#pill-1-4" data-toggle="tab">Hectareas</a>
@@ -324,7 +324,10 @@
         document.getElementById("fecha_i").value = y + "-" + m + "-" + d;
         document.getElementById("fecha_f").value = y + "-" + m + "-" + d;
     });
-    
+
+    mostar_fecha(fecha_atras, fecha_adelante);
+    mostar_fechamas(fecha_atras, fecha_mass);
+
     $(".lote_id").select2();
     $(".activi_id").select2();
     $(".herramienta_id").select2();

@@ -29,7 +29,7 @@ $(document).on("click", "#btn_aceptar", function () {
         return false;
       } else {
         var data = JSON.parse(responce);
-        if (data[0][3] == 0) {
+        if (data[3] == 0) {
           Swal.fire({
             icon: "error",
             title: "Usuario inactivo",
@@ -41,8 +41,8 @@ $(document).on("click", "#btn_aceptar", function () {
             url: "../Admin/controlador/usuario/usuario.php",
             type: "POST",
             data: {
-              id_usu: data[0][0],
-              rol: data[0][4],
+              id_usu: data[0],
+              rol: data[4],
               funcion: funcion,
             },
           }).done(function (res) {
@@ -886,8 +886,8 @@ function registra_usuario() {
   formdata.append("correo", correo);
   formdata.append("cedula", cedula);
   formdata.append("tipo_rol", tipo_rol);
-  formdata.append("usuario", usuario);
-  formdata.append("password", password);
+  formdata.append("usuario", usuario.trim());
+  formdata.append("password", password.trim());
 
   formdata.append("foto", foto);
   formdata.append("nombrearchivo", nombrearchivo);
@@ -1432,7 +1432,7 @@ function editar_usuario() {
       correo: correo,
       cedula: cedula,
       tipo_rol: tipo_rol,
-      usuario: usuario,
+      usuario: usuario.trim(),
     },
   }).done(function (resp) {
     if (resp > 0) {

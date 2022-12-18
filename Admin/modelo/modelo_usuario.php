@@ -21,16 +21,12 @@ class modelo_usuario extends modelo_conexion
             $query->bindParam(1, $usuario);
             $query->bindParam(2, $passs);
             $query->execute();
-            $result = $query->fetchAll(PDO::FETCH_BOTH);
-            $arreglo = array();
-            foreach ($result as $respuesta) {
-                $arreglo[] = $respuesta;
-            }
-            return $arreglo;
+            $result = $query->fetch(PDO::FETCH_BOTH);
+            return $result;
             //cerramos la conexion
-            modelo_conexion::cerrar_conexion();
+           
         } catch (Exception $e) {
-            modelo_conexion::cerrar_conexion();
+           
             echo "Error: " . $e->getMessage();
         }
         exit();

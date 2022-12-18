@@ -451,7 +451,6 @@ if ($_POST["funcion"] === "ver_data_excel_recobro") {
     exit();
 }
 
-
 /////////////////////////////////////
 if ($_POST["funcion"] === "llamar_dato_grafica") {
     $id = htmlspecialchars($_POST["id"], ENT_QUOTES, 'UTF-8');
@@ -632,7 +631,6 @@ if ($_POST["funcion"] === "recobro_caidos_semana_cuatro") {
     exit();
 }
 
-
 ///////////////////////////////////// saldos
 if ($_POST["funcion"] === "recobro_saldos_semana_uno") {
     $id = htmlspecialchars($_POST["id"], ENT_QUOTES, 'UTF-8');
@@ -693,3 +691,127 @@ if ($_POST["funcion"] === "recobro_porcentaje") {
     exit();
 }
 
+///////////////////////////////////// produccion
+if ($_POST["funcion"] === "cargar_excel_produccion") {
+
+    $nombrearchivo = htmlspecialchars($_POST['nombrearchivo'], ENT_QUOTES, 'UTF-8');
+
+    if (is_array($_FILES) && count($_FILES) > 0) {
+        $ruta = 'img/archivo_produccion/' . $nombrearchivo . '.xlsx';
+        $consulta = $MPD->cargar_excel_produccion($ruta);
+
+        if ($consulta === 0 || $consulta === 2) {
+            echo $consulta;
+        } else {
+
+            if (move_uploaded_file($_FILES['foto']["tmp_name"], "../../img/archivo_produccion/" . $nombrearchivo . ".xlsx")) {
+
+                require 'vendor/autoload.php';
+                // para tener los datos de una celda especifica mayores al numero colocado e la funcion
+                class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
+                {
+                    public function readCell($columnAddress, $row, $worksheetName = '')
+                    {
+                        if ($row > 2) {
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+                $inputFileName = '../../img/archivo_produccion/' . $nombrearchivo . '.xlsx';
+
+                $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
+                $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
+                $reader->setReadFilter(new MyReadFilter());
+                $spreadsheet = $reader->load($inputFileName);
+                $cantidad = $spreadsheet->getActiveSheet()->toArray();
+
+                try {
+                    $count = 0;
+                    $cinta = 0;
+
+                    foreach ($cantidad as $dia) {
+
+                        if ($dia[3] != '') {
+                            $fecha = date('Y-m-d', strtotime($dia[3]));
+                            $count++;
+                            if ($cinta > 7) {
+                                $cinta = 1;
+                            } else {
+                                $cinta++;
+                            }
+                            //35
+                            //32
+                            $sql = "INSERT INTO produccion_excel (id,id_archivo,id_cinta,fecha,racimos_cosechados,racimos_rechazados,racimos_precesados,cajas_procesadas) 
+                            VALUES ('$count', '$consulta', '$cinta', 
+                            '$fecha',
+                            '$dia[4]',
+                            '$dia[6]',
+                            '$dia[8]', 
+                            '$dia[10]')";
+                            $result = $mysqli->query($sql);
+                        }
+                    }
+
+                    exit($mysqli->close());
+                } catch (Exception $e) {
+
+                    $sql_delete = "DELETE FROM archivo_produccion WHERE id = '$consulta'";
+                    $result = $mysqli->query($sql_delete);
+                    unlink($inputFileName);
+
+                    echo "Error: " . $e->getMessage();
+                }
+            } else {
+                echo 0;
+            }
+        }
+    }
+
+    exit();
+}
+
+////////////////////////
+if ($_POST["funcion"] === "cargar_excel_produccion_") {
+    $consulta = $MPD->cargar_excel_produccion_();
+    if (empty($consulta)) {
+        echo 0;
+    } else {
+        echo json_encode($consulta, JSON_UNESCAPED_UNICODE);
+    }
+}
+
+////////////////////////
+if ($_POST["funcion"] === "eliminar_archivo_excel_produccion") {
+    $id = htmlspecialchars($_POST["id"], ENT_QUOTES, 'UTF-8');
+    $imagen = htmlspecialchars($_POST["imagen"], ENT_QUOTES, 'UTF-8');
+
+    $consulta = $MPD->eliminar_archivo_excel_produccion($id);
+    if ($consulta === 1) {
+        unlink("../../img/archivo_produccion/" . $imagen . ".xlsx");
+        echo $consulta;
+    } else {
+        echo $consulta;
+    }
+}
+
+/////////////////////////////////////
+if ($_POST["funcion"] === "ver_data_excel_produccion") {
+
+    $id = htmlspecialchars($_POST["id"], ENT_QUOTES, 'UTF-8');
+
+    $data = $MPD->Tabla_data_excel_produccion($id);
+    if ($data) {
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo '{
+                "sEcho": 1,
+                "iTotalRecords": "0",
+                "iTotalDisplayRecords": "0",
+                "aaData": []
+            }';
+    }
+    exit();
+}

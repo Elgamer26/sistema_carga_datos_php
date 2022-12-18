@@ -41,7 +41,7 @@ $fecha = date("Y-m-d");
 
                 <div class="col-md-3 mb-3">
                     <label for="fecha">Fecha</label> <b><label style="color: red;" id="fecha_obligg"></label></b>
-                    <input type="date" value="<?php echo $fecha; ?>" class="form-control" id="fecha" />
+                    <input type="date" value="<?php echo $fecha; ?>" class="form-control calendario" id="fecha" />
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -87,8 +87,8 @@ $fecha = date("Y-m-d");
                     </div>
 
                     <div class="col-md-3 mb-3">
-                        <label for="descuento_t">Descuento</label> <b><label style="color: red;" id="descuento_t_obligg"></label></b>
-                        <input type="number" class="form-control" id="descuento_t" placeholder="Descuento" value="0" />
+                        <label for="descuento_t">Descuento moneda/dolar</label> <b><label style="color: red;" id="descuento_t_obligg"></label></b>
+                        <input type="text" onkeypress="return filterfloat(event, this);" class="form-control" id="descuento_t" placeholder="Descuento" value="0" />
                     </div>
 
                     <div class="col-md-1 mb-3">
@@ -211,6 +211,8 @@ $fecha = date("Y-m-d");
 <script src="../../js/inventario.js"></script>
 
 <script>
+    mostar_fecha(fecha_atras, fecha_adelante);
+
     listar_proveedor_combo();
     $(".selec_proveedor").select2();
     listar_herramientas_disponibles();
@@ -295,7 +297,8 @@ $fecha = date("Y-m-d");
             );
         }
 
-        var total = 0, agg = 0;
+        var total = 0,
+            agg = 0;
         total = cantidad * parseFloat(precio).toFixed(2);
         agg = total - parseFloat(descuento).toFixed(2);
 

@@ -45,7 +45,7 @@ $fecha = date("Y-m-d");
 
                 <div class="col-sm-2 form-group">
                     <label>Seleccione la fecha</label> &nbsp;&nbsp; <label style="color:red;" id="fecha_oblig"></label>
-                    <input type="date" class="form-control" id="fecha" value="<?php echo $fecha ?>">
+                    <input type="date" class="form-control calendario" id="fecha" value="<?php echo $fecha ?>">
                 </div>
 
                 <div class="col-sm-9 form-group">
@@ -87,7 +87,7 @@ $fecha = date("Y-m-d");
                         </tr>
                     </tfoot>
                 </table>
-                
+
             </div>
 
         </div>
@@ -98,6 +98,8 @@ $fecha = date("Y-m-d");
 <script src="../../js/produccion.js"></script>
 
 <script>
+    mostar_fecha(fecha_atras, fecha_adelante);
+
     $(".prodcuciion_id").select2();
     listar_produccion_combo();
 

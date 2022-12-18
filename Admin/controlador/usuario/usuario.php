@@ -12,7 +12,7 @@ if ($_POST["funcion"] === "logeo") {
     $pass = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
     $resutado = $MU->verifcar_usuario($usu, $pass);
     $data = json_encode($resutado, JSON_UNESCAPED_UNICODE);
-    if (count($resutado) > 0) {
+    if (!empty($resutado)) {
         echo $data;
     } else {
         echo 0;

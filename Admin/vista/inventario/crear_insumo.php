@@ -51,12 +51,12 @@
 
                 <div class="col-md-4 mb-3">
                     <label for="precio_compra">Precio compra</label> <b><label style="color: red;" id="precio_compra_obligg"></label></b>
-                    <input type="number" class="form-control" id="precio_compra" placeholder="Ingrese el precio compra" />
+                    <input type="text" onkeypress="return filterfloat(event, this);" class="form-control" id="precio_compra" placeholder="Ingrese el precio compra" />
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label for="cantidad_insumo">Cantidad</label> <b><label style="color: red;" id="cantidad_insumo_obligg"></label></b>
-                    <input type="text" maxlength="10" class="form-control" id="cantidad_insumo" placeholder="Ingrese la cantidad" onkeypress="return soloNumeros(event)"/>
+                    <input type="text" maxlength="7" class="form-control" id="cantidad_insumo" placeholder="Ingrese la cantidad" onkeypress="return soloNumeros(event)"/>
                 </div>
 
                 <div class="col-md-12 mb-3">
