@@ -1302,70 +1302,6 @@ class modelo_prediccion extends modelo_conexion
         exit();
     }
 
-    function grafica_fechas()
-    {
-        try {
-            $c = modelo_conexion::conexionPDO();
-            $sql = 'SELECT
-            caja_excel.fecha,
-            ABS(SUM( caja_excel.caja * 2 - 1 )) AS cajas,
-            YEAR ( caja_excel.fecha ) AS `año`,
-            ELT(
-                MONTH ( caja_excel.fecha ),
-                "Enero",
-                "Febrero",
-                "Marzo",
-                "Abril",
-                "Mayo",
-                "Junio",
-                "Julio",
-                "Agosto",
-                "Septiembre",
-                "Octubre",
-                "Noviembre",
-                "Diciembre" 
-            ) AS mes,
-            caja_excel.contenedor,
-            ABS(caja_excel.peso_prim - SUM( caja_excel.caja * 2 - 1 )) AS peso,
-            ABS(ROUND(SUM( caja_excel.caja * 2 - 1 ) - ( caja_excel.caja - caja_excel.peso_prim ) / YEAR ( caja_excel.fecha ) - YEAR ( caja_excel.fecha ) )) AS otro 
-        FROM
-            caja_excel
-            INNER JOIN archivo_caja ON caja_excel.id_excel = archivo_caja.id 
-        GROUP BY 
-            ELT(
-                MONTH ( caja_excel.fecha ),
-                "Enero",
-                "Febrero",
-                "Marzo",
-                "Abril",
-                "Mayo",
-                "Junio",
-                "Julio",
-                "Agosto",
-                "Septiembre",
-                "Octubre",
-                "Noviembre",
-                "Diciembre" 
-            ) 
-        ORDER BY
-            caja_excel.fecha ASC';
-            $query = $c->prepare($sql);
-            $query->execute();
-            $result = $query->fetchAll(PDO::FETCH_BOTH);
-            $arreglo = array();
-            foreach ($result as $respuesta) {
-                $arreglo[] = $respuesta;
-            }
-            return $arreglo;
-            //cerramos la conexion
-            modelo_conexion::cerrar_conexion();
-        } catch (Exception $e) {
-            modelo_conexion::cerrar_conexion();
-            echo "Error: " . $e->getMessage();
-        }
-        exit();
-    }
-
     function grafica_tipo_cajas()
     {
         try {
@@ -1712,21 +1648,84 @@ class modelo_prediccion extends modelo_conexion
 
 
 
+    function grafica_cajas()
+    {
+        try {
+            $c = modelo_conexion::conexionPDO();
+            $sql = 'SELECT
+            caja_excel.fecha,
+            ABS(SUM( caja_excel.caja * 2 - 1 )) AS cajas,
+            YEAR ( caja_excel.fecha ) AS `año`,
+            ELT(
+                MONTH ( caja_excel.fecha ),
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Septiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre" 
+            ) AS mes,
+            caja_excel.contenedor,
+            ABS(caja_excel.peso_prim - SUM( caja_excel.caja * 2 - 1 )) AS peso,
+            ABS(ROUND(SUM( caja_excel.caja * 2 - 1 ) - ( caja_excel.caja - caja_excel.peso_prim ) / YEAR ( caja_excel.fecha ) - YEAR ( caja_excel.fecha ) )) AS otro 
+        FROM
+            caja_excel
+            INNER JOIN archivo_caja ON caja_excel.id_excel = archivo_caja.id 
+        GROUP BY 
+            ELT(
+                MONTH ( caja_excel.fecha ),
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Septiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre" 
+            ) 
+        ORDER BY
+            caja_excel.fecha ASC';
+            $query = $c->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_BOTH);
+            $arreglo = array();
+            foreach ($result as $respuesta) {
+                $arreglo[] = $respuesta;
+            }
+            return $arreglo;
+            //cerramos la conexion
+            modelo_conexion::cerrar_conexion();
+        } catch (Exception $e) {
+            modelo_conexion::cerrar_conexion();
+            echo "Error: " . $e->getMessage();
+        }
+        exit();
+    }
+
     function grafica_predecir_enfunde()
     {
         try {
             $c = modelo_conexion::conexionPDO();
             $sql = 'SELECT ROUND(( SUM( enfunde_excel.total ) / SUM( enfunde_excel.lote_6 ) * SUM( enfunde_excel.lote_7 ) )) AS año1,
             ROUND(
-                SUM( enfunde_excel.lote_1A ) / SUM( enfunde_excel.lote_1B ) * SUM( enfunde_excel.lote_1C ) + SUM( enfunde_excel.lote_C ) + SUM( enfunde_excel.lote_D ) + SUM( enfunde_excel.lote_2 ) 
+                SUM( enfunde_excel.lote_1A ) / SUM( enfunde_excel.lote_1B ) * SUM( enfunde_excel.lote_1C ) + SUM( enfunde_excel.lote_C ) + SUM( enfunde_excel.lote_D )  
             ) AS año2,
             ROUND(
             SUM( enfunde_excel.lote_1A ) / SUM( enfunde_excel.lote_1B ) * SUM( enfunde_excel.lote_1C ) + SUM( enfunde_excel.lote_8 ) + SUM( enfunde_excel.lote_A )  ) AS año3 
             FROM
                 enfunde_excel 
             GROUP BY
-                enfunde_excel.lote_1A 
-                LIMIT 12';
+                enfunde_excel.id';
             $query = $c->prepare($sql);
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_BOTH);

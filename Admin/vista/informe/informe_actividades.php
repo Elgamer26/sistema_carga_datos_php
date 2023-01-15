@@ -37,13 +37,16 @@
             <select class="form-control tipo_actividades" style="width: 100%;" id="tipo_actividades"></select>
         </div>
 
-        <div class="col-lg-1" style="width: 100%;">
-            <labe> Ver todo</label>
+        <div class="col-lg-1">
+            <labe> Ver todo ...</label>
                 <button onclick="ver_todo_actividad();" class="btn btn-danger"><i class="fa fa-search"></i></button>
                 <br>
                 <br>
         </div>
 
+        <br>
+        <br>
+        <br>
         <br>
 
         <div class="col-lg-12">

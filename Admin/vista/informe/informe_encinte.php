@@ -43,12 +43,15 @@
         </div>
 
         <div class="col-lg-1">
-            <labe> Buscar...</label>
+            <labe> Buscar ... </label>
                 <button onclick="var_encinte();" class="btn btn-danger"><i class="fa fa-search"></i></button>
                 <br>
                 <br>
         </div>
 
+        <br>
+        <br>
+        <br>
         <br>
 
         <div class="col-lg-12">

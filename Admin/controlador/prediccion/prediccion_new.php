@@ -14,17 +14,6 @@ if ($_POST["funcion"] === "grafica_total_años") {
 }
 
 /////////////////////////////////////
-if ($_POST["funcion"] === "grafica_fechas") { 
-    $datos = $MPD->grafica_fechas();
-    if (!empty($datos)) {
-        echo json_encode($datos, JSON_UNESCAPED_UNICODE);
-    } else {
-        echo 0;
-    }
-    exit();
-}
-
-/////////////////////////////////////
 if ($_POST["funcion"] === "grafica_fechas_toddo") { 
     $datos = $MPD->grafica_fechas_toddo();
     if (!empty($datos)) {
@@ -136,6 +125,18 @@ if ($_POST["funcion"] === "grafica_tipo_cajas_años_n_buscar") {
     $año1 = htmlspecialchars($_POST["año1"], ENT_QUOTES, 'UTF-8');
     $año2 = htmlspecialchars($_POST["año2"], ENT_QUOTES, 'UTF-8');
     $datos = $MPD->grafica_tipo_cajas_años_n_buscar($año1, $año2);
+    if (!empty($datos)) {
+        echo json_encode($datos, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo 0;
+    }
+    exit();
+}
+
+
+/////////////////////////////////////
+if ($_POST["funcion"] === "grafica_cajas") { 
+    $datos = $MPD->grafica_cajas();
     if (!empty($datos)) {
         echo json_encode($datos, JSON_UNESCAPED_UNICODE);
     } else {
