@@ -88,7 +88,7 @@
     </div>
 
     <?php require "../layout/footer.php" ?>
-    
+
     <script>
         $(".tipo_actividades").select2();
         listar_tipo_actividades_COMBO();

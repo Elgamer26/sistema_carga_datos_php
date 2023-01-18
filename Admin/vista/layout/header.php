@@ -507,6 +507,12 @@ $data_web = mysqli_fetch_assoc($resulta_user);
                                             Producto utilizado en actividades
                                         </a>
                                     </li>
+                                    <li class="informe_p_">
+                                        <a href="../informe/informe_prediccion.php">
+                                            <i class="metismenu-icon fa fa-file"></i>
+                                            Informe de predicción
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
