@@ -108,6 +108,7 @@ function cargar_excel_cajas_() {
                         </a>
                         <label> <b> Nombre: </b> ${fin[0]} </label><br>
                         <label> <b> Fecha carga: ${row[2]} </b> </label><br>
+                        <button onclick="eliminar_archivo_excel_cajas('${row[0]}', '${fin[0]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                     </div>`;
         });
         $("#unir_exel_cajas").html(element);
@@ -115,8 +116,6 @@ function cargar_excel_cajas_() {
     },
   });
 }
-
-{/* <button onclick="eliminar_archivo_excel_cajas('${row[0]}', '${fin[0]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button> */}
 
 function eliminar_archivo_excel_cajas(id, imagen) {
   Swal.fire({
@@ -285,7 +284,7 @@ function cargar_excel_enfunde_() {
                         </a>
                         <label> <b> Nombre: </b> ${fin[0]} </label><br>
                         <label> <b> Fecha carga: ${row[2]} </b> </label><br>
-                   
+                         <button onclick="eliminar_archivo_excel_funda('${row[0]}', '${fin[0]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button> 
                     </div>`;
         });
         $("#unir_exel_enfunde").html(element);
@@ -319,6 +318,9 @@ function eliminar_archivo_excel_funda(id, imagen) {
         url: "../../controlador/prediccion/prediccion.php",
         data: { id: id, imagen: imagen, funcion: funcion },
         success: function (response) {
+
+          console.log(response);
+
           if (response == 1) {
             Swal.fire({
               title: "Archivo eliminado!!",
@@ -456,7 +458,7 @@ function cargar_excel_recobro_() {
                         </a>
                         <label> <b> Nombre: </b> ${fin[0]} </label><br>
                         <label> <b> Fecha carga: ${row[2]} </b> </label><br>
-                      
+                        <button onclick="eliminar_archivo_excel_recargo('${row[0]}', '${fin[0]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button> 
                     </div>`;
         });
         $("#unir_exel_recobro").html(element);
@@ -627,7 +629,7 @@ function cargar_excel_produccion_() {
                         </a>
                         <label> <b> Nombre: </b> ${fin[0]} </label><br>
                         <label> <b> Fecha carga: ${row[2]} </b> </label><br>
-                     
+                        <button onclick="eliminar_archivo_excel_produccion('${row[0]}', '${fin[0]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button> 
                     </div>`;
         });
         $("#unir_exel_produccion").html(element);
